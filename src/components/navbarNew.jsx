@@ -4,7 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import OutsideClickHandler from "react-outside-click-handler";
 import { IoCartOutline } from "react-icons/io5";
-import { FaBars, FaTimes, FaNewspaper, FaSearch } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaNewspaper,
+  FaSearch,
+} from "react-icons/fa";
 import { usePathname } from "next/navigation";
 
 const navItems = [
@@ -15,7 +20,7 @@ const navItems = [
   { name: "Order Guide", href: "/guide" },
 ];
 
-const Navbar = () => {
+const Navbars = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,7 +32,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="z-50 fixed top-0 w-screen bg-gray-200 ">
+    <nav className="z-50 fixed top-0 w-screen bg-gray-200 ">
         <div className="flex items-center justify-between w-[90%] mx-auto h-16 text-black">
           {/* Logo */}
           <figure className="h-14 w-14 rounded-full overflow-hidden border-2 border-gray-300">
@@ -56,6 +61,18 @@ const Navbar = () => {
             ))}
           </ul>
 
+        <div className="flex items-center gap-4">
+          <Link href="/cart" className="text-xl pr-2 relative">
+            <div className="absolute top-0 right-0 bg-amber-300 text-sm rounded-full size-4 text-white flex items-center justify-center">
+              <p>0</p>
+            </div>
+            <IoCartOutline size={30} />
+          </Link>
+          <button onClick={toggleMenu} className="md:hidden text-2xl">
+            {isOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
           {/* Right Side: Search, Cart, Hamburger */}
           <div className="flex items-center gap-4">
             <FaSearch
@@ -64,11 +81,8 @@ const Navbar = () => {
               className="cursor-pointer"
             />
             {/* Cart Icon */}
-            <Link href="/cart" className="text-xl pr-2 relative">
-              <div className="absolute top-0 right-0 bg-amber-300 text-sm rounded-full size-4 text-white flex items-center justify-center">
-                <p>0</p>
-              </div>
-              <IoCartOutline size={30} />
+            <Link href="/cart" className="text-xl pr-2">
+              <FaShoppingCart size={30} />
             </Link>
 
             {/* Hamburger Menu */}
@@ -198,4 +212,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbars;
