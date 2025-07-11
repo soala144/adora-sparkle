@@ -3,8 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import OutsideClickHandler from "react-outside-click-handler";
-import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
-import { FaBars, FaTimes, FaNewspaper } from "react-icons/fa";
+import {
+  IoCartOutline,
+  IoSearchOutline,
+  IoMenuOutline,
+  IoClose,
+} from "react-icons/io5";
+import { FaNewspaper } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 
 const navItems = [
@@ -73,7 +78,7 @@ const Navbar = () => {
 
             {/* Hamburger Menu */}
             <button onClick={toggleMenu} className="md:hidden text-2xl">
-              {isOpen ? <FaTimes /> : <FaBars />}
+              {isOpen ? <IoClose size={30} /> : <IoMenuOutline size={30} />}
             </button>
           </div>
 
@@ -95,8 +100,8 @@ const Navbar = () => {
                           className="h-full w-full object-cover"
                         />
                       </figure>
-                      <FaTimes
-                        size={24}
+                      <IoClose
+                        size={30}
                         className="cursor-pointer"
                         onClick={() => setIsOpen(false)}
                       />
@@ -157,8 +162,8 @@ const Navbar = () => {
                     Clear
                   </button>
                 )}
-                <FaTimes
-                  size={22}
+                <IoClose
+                  size={30}
                   className="cursor-pointer text-gray-600"
                   onClick={() => setShowSearch(false)}
                 />
