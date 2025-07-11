@@ -3,8 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import OutsideClickHandler from "react-outside-click-handler";
-import { IoCartOutline } from "react-icons/io5";
-import { FaBars, FaTimes, FaNewspaper, FaSearch } from "react-icons/fa";
+import {
+  IoCartOutline,
+  IoSearchOutline,
+  IoMenuOutline,
+  IoClose,
+} from "react-icons/io5";
+import { FaNewspaper } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 
 const navItems = [
@@ -44,9 +49,9 @@ const Navbar = () => {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`text-lg font-semibold hover:text-gray-600 ${
+                  className={`text-lg hover:text-[#e38bc9b6] ${
                     pathname === item.href
-                      ? "underline underline-offset-4 text-black"
+                      ? "underline-offset-4 text-[#FF66D1]"
                       : ""
                   }`}
                 >
@@ -58,14 +63,14 @@ const Navbar = () => {
 
           {/* Right Side: Search, Cart, Hamburger */}
           <div className="flex items-center gap-4">
-            <FaSearch
-              size={20}
+            <IoSearchOutline
+              size={27}
               onClick={toggleSearch}
               className="cursor-pointer"
             />
             {/* Cart Icon */}
             <Link href="/cart" className="text-xl pr-2 relative">
-              <div className="absolute top-0 right-0 bg-amber-300 text-sm rounded-full size-4 text-white flex items-center justify-center">
+              <div className="absolute top-0 right-[3px] bg-[#FF66D1] text-sm rounded-full size-4 text-white flex items-center justify-center">
                 <p>0</p>
               </div>
               <IoCartOutline size={30} />
@@ -73,7 +78,7 @@ const Navbar = () => {
 
             {/* Hamburger Menu */}
             <button onClick={toggleMenu} className="md:hidden text-2xl">
-              {isOpen ? <FaTimes /> : <FaBars />}
+              {isOpen ? <IoClose size={30} /> : <IoMenuOutline size={30} />}
             </button>
           </div>
 
@@ -95,8 +100,8 @@ const Navbar = () => {
                           className="h-full w-full object-cover"
                         />
                       </figure>
-                      <FaTimes
-                        size={24}
+                      <IoClose
+                        size={30}
                         className="cursor-pointer"
                         onClick={() => setIsOpen(false)}
                       />
@@ -157,8 +162,8 @@ const Navbar = () => {
                     Clear
                   </button>
                 )}
-                <FaTimes
-                  size={22}
+                <IoClose
+                  size={30}
                   className="cursor-pointer text-gray-600"
                   onClick={() => setShowSearch(false)}
                 />
