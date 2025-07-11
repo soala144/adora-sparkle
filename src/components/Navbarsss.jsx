@@ -22,7 +22,7 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="flex items-center justify-between px-4 h-16 bg-gray-200 text-black relative z-50">
+    <nav className="flex items-center justify-between px-4 lg:w-[70%] lg:mx-auto h-16 bg-gray-200 text-black relative z-50">
       <figure className="h-12 w-12 md:h-14 md:w-14 rounded-full overflow-hidden border-2 border-gray-300">
         <img
           src="/images/logo.jpg"

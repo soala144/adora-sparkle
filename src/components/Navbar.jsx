@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import OutsideClickHandler from "react-outside-click-handler";
-import { FaBars, FaTimes, FaShoppingCart, FaNewspaper } from "react-icons/fa";
+import { FaBars, FaTimes, FaNewspaper } from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
 
 import { usePathname } from "next/navigation";
 
@@ -23,8 +24,8 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="z-50 fixed top-0 w-screen">
-      <div className="flex items-center justify-between bg-gray-200 px-4 h-16 text-black">
+    <nav className="z-50 fixed top-0 w-screen bg-gray-200 ">
+      <div className="flex items-center justify-between w-[90%] mx-auto h-16 text-black">
         <figure className="h-14 w-14  rounded-full overflow-hidden border-2 border-gray-300">
           <img
             src="/images/logo.jpg"
@@ -51,8 +52,11 @@ const Navbar = () => {
         </ul>
 
         <div className="flex items-center gap-4">
-          <Link href="/cart" className="text-xl pr-2">
-            <FaShoppingCart size={30} />
+          <Link href="/cart" className="text-xl pr-2 relative">
+            <div className="absolute top-0 right-0 bg-amber-300 text-sm rounded-full size-4 text-white flex items-center justify-center">
+              <p>0</p>
+            </div>
+            <IoCartOutline size={30} />
           </Link>
           <button onClick={toggleMenu} className="md:hidden text-2xl">
             {isOpen ? <FaTimes /> : <FaBars />}
