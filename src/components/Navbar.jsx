@@ -137,7 +137,7 @@ const Navbar = () => {
       </nav>
 
       {showSearch && (
-        <div className="fixed inset-0 bg-white z-[9999] overflow-y-auto">
+        <div className="fixed inset-0 bg-white z-[9999] overflow-y-auto animate-slide-in">
           <div className="max-w-4xl mx-auto px-4 py-6">
             {/* Top bar: input + close */}
             <div className="flex items-center justify-between border-b border-gray-400 pb-2 mb-4">
