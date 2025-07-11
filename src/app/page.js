@@ -1,10 +1,13 @@
+import Categories from "@/components/Categories";
+import HeroSection from "@/components/HeroSection";
 import React from "react";
 
 const page = () => {
   return (
     <div>
       {" "}
-      <h1 className="text-3xl font-bold">Welcome to MyShop</h1>
+      <HeroSection />
+      <Categories />
     </div>
   );
 };
