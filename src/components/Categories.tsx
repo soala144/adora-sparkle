@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 import { Navigation, Pagination, FreeMode } from "swiper/modules";
 
 import "swiper/css";
@@ -27,28 +27,9 @@ const Categories = () => {
         Swipe through our beautiful handcrafted bead collections.
       </p>
 
-      <Swiper
-        modules={[Navigation, Pagination, FreeMode]}
-        spaceBetween={20}
-        slidesPerView={2}
-        grabCursor={true}
-        freeMode={true}
-        navigation
-        pagination={{ clickable: true }}
-        breakpoints={{
-          640: {
-            slidesPerView: 3,
-          },
-          768: {
-            slidesPerView: 4,
-          },
-          1024: {
-            slidesPerView: 5,
-          },
-        }}
-      >
+      <div className="flex w-full overflow-scroll no-scroll-bar">
         {categories.map((cat) => (
-          <SwiperSlide key={cat.category}>
+          <div key={cat.category}>
             <div className="flex flex-col items-center p-4">
               <figure className="h-32 w-32 md:h-48 md:w-48 rounded-full overflow-hidden border-2 border-gray-300">
                 <img
@@ -59,9 +40,9 @@ const Categories = () => {
               </figure>
               <p className="text-xl mt-2">{cat.category}</p>
             </div>
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
+      </div>
     </div>
   );
 };
