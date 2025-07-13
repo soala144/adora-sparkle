@@ -1,3 +1,33 @@
+export const metadata = {
+  title: "Order Guide | Adora Sparkles",
+  description: "Step-by-step guide to ordering your favorite handcrafted jewelry and accessories from Adora Sparkles. Simple, secure, and fast!",
+  keywords: "order guide, how to order, shopping steps, Adora Sparkles, Nigeria, beads, jewelry, accessories, checkout, delivery",
+  openGraph: {
+    title: "Order Guide | Adora Sparkles",
+    description: "Step-by-step guide to ordering your favorite handcrafted jewelry and accessories from Adora Sparkles. Simple, secure, and fast!",
+    url: "https://adorasparkles.com/guide",
+    siteName: "Adora Sparkles",
+    images: [
+      {
+        url: "/images/logo.jpg",
+        width: 400,
+        height: 400,
+        alt: "Adora Sparkles Logo",
+      },
+    ],
+    locale: "en_NG",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Order Guide | Adora Sparkles",
+    description: "Step-by-step guide to ordering your favorite handcrafted jewelry and accessories from Adora Sparkles. Simple, secure, and fast!",
+    images: ["/images/logo.jpg"],
+  },
+  alternates: {
+    canonical: "https://adorasparkles.com/guide",
+  },
+};
 "use client";
 
 import React from "react";
