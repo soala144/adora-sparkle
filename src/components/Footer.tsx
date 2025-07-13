@@ -16,6 +16,9 @@ const Footer = () => {
               src="/images/logo.jpg"
               alt="Adora Sparkles"
               className="w-full h-full object-cover"
+              width={56}
+              height={56}
+              priority
             />
           </figure>
           <p className="text-sm text-gray-400">

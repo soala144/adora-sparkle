@@ -56,6 +56,9 @@ const Categories = () => {
                   src={cat.image}
                   alt={cat.category}
                   className="h-full w-full object-cover"
+                  width={192}
+                  height={192}
+                  priority
                 />
               </figure>
               <p className="text-xl mt-2">{cat.category}</p>

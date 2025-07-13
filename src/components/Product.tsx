@@ -68,6 +68,9 @@ const Product = () => {
               src={product.image}
               alt={product.name}
               className="w-20 h-20 object-cover rounded mb-2"
+              width={80}
+              height={80}
+              priority
             />
             <h2 className="text-base font-semibold mb-1 text-center line-clamp-2">
               {product.name}
