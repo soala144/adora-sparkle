@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { FaInstagram, FaFacebookF, FaTiktok, FaEnvelope } from "react-icons/fa";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -11,7 +12,7 @@ const Footer = () => {
         {/* Logo & Description */}
         <div>
           <figure className="h-14 w-14 mb-4 rounded-full overflow-hidden border-2 border-pink-500">
-            <img
+            <Image
               src="/images/logo.jpg"
               alt="Adora Sparkles"
               className="w-full h-full object-cover"

@@ -11,8 +11,14 @@ import {
 } from "react-icons/io5";
 import { FaNewspaper } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
-const navItems = [
+interface NavItem {
+  name: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
   { name: "About", href: "/about" },
@@ -20,15 +26,15 @@ const navItems = [
   { name: "Order Guide", href: "/guide" },
 ];
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+const Navbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const pathname = usePathname();
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
-  const toggleSearch = () => setShowSearch(!showSearch);
+  const toggleMenu = (): void => setIsOpen(!isOpen);
+  const closeMenu = (): void => setIsOpen(false);
+  const toggleSearch = (): void => setShowSearch(!showSearch);
 
   return (
     <>
@@ -36,10 +42,13 @@ const Navbar = () => {
         <div className="flex items-center justify-between w-[90%] mx-auto h-16 text-black">
           {/* Logo */}
           <figure className="h-14 w-14 rounded-full overflow-hidden border-2 border-gray-300">
-            <img
+            <Image
               src="/images/logo.jpg"
               alt="Logo"
               className="h-full w-full object-cover"
+              width={56}
+              height={56}
+              priority
             />
           </figure>
 
@@ -94,10 +103,13 @@ const Navbar = () => {
                     {/* Mobile Logo Row */}
                     <div className="flex justify-between items-center mb-6">
                       <figure className="h-14 w-14 rounded-full overflow-hidden border-2 border-gray-300">
-                        <img
+                        <Image
                           src="/images/logo.jpg"
                           alt="Logo"
                           className="h-full w-full object-cover"
+                          width={56}
+                          height={56}
+                          priority
                         />
                       </figure>
                       <IoClose
@@ -182,10 +194,13 @@ const Navbar = () => {
             <div className="flex flex-col gap-6">
               {[...Array(2)].map((_, i) => (
                 <div key={i} className="flex gap-4 items-center">
-                  <img
+                  <Image
                     src="/images/waist-beads.jpg"
                     alt="Bead"
                     className="w-20 h-20 object-cover rounded"
+                    width={80}
+                    height={80}
+                    priority
                   />
                   <div>
                     <h3 className="font-semibold text-lg">

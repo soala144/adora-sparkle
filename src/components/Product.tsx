@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const products = [
@@ -63,14 +64,20 @@ const Product = () => {
             key={product.id}
             className="bg-white rounded-lg shadow flex flex-col items-center p-2 hover:shadow-lg transition"
           >
-            <img
+            <Image
               src={product.image}
               alt={product.name}
               className="w-20 h-20 object-cover rounded mb-2"
             />
-            <h2 className="text-base font-semibold mb-1 text-center line-clamp-2">{product.name}</h2>
-            <p className="text-pink-600 font-bold text-sm mb-2">{product.price}</p>
-            <button className="bg-pink-600 hover:bg-pink-700 text-white px-3 py-1 rounded-full font-medium text-xs transition">Buy Now</button>
+            <h2 className="text-base font-semibold mb-1 text-center line-clamp-2">
+              {product.name}
+            </h2>
+            <p className="text-pink-600 font-bold text-sm mb-2">
+              {product.price}
+            </p>
+            <button className="bg-pink-600 hover:bg-pink-700 text-white px-3 py-1 rounded-full font-medium text-xs transition">
+              Buy Now
+            </button>
           </div>
         ))}
       </div>
