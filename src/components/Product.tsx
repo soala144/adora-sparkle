@@ -79,22 +79,22 @@ const Product = () => {
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <div className="bg-white rounded-lg shadow flex flex-col items-center p-2 hover:shadow-lg transition">
+            <div className="bg-white rounded-lg my-3 shadow-lg flex flex-col items-center p-2 hover:shadow-lg transition">
               <Image
                 src={product.image}
                 alt={product.name}
-                className="w-20 h-20 object-cover rounded mb-2"
-                width={80}
+                className="w-30 h-20 block mx-auto object-cover rounded mb-2"
+                width={130}
                 height={80}
                 priority
               />
-              <h2 className="text-base font-semibold mb-1 text-center line-clamp-2">
+              <h2 className="text-[20px] font-semibold mb-1 line-clamp-2">
                 {product.name}
               </h2>
-              <p className="text-pink-600 font-bold text-sm mb-2">
+              <p className="text-pink-600 font-bold text-[18px] text-sm mb-2">
                 {product.price}
               </p>
-              <button className="bg-pink-600 hover:bg-pink-700 text-white px-5 py-1 rounded-full font-medium text-xs transition">
+              <button className="bg-pink-600 text-[18px] hover:bg-pink-700 cursor-pointer text-white px-5 w-full py-3 rounded-md font-medium text-xs transition">
                 Buy Now
               </button>
             </div>

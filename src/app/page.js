@@ -44,7 +44,6 @@ export const metadata = {
 const page = () => {
   return (
     <div>
-      {" "}
       <HeroSection />
       <Categories />
       <Product />

@@ -29,44 +29,8 @@ const Categories = () => {
       <p className="text-center text-gray-600 mb-6">
         Swipe through our beautiful handcrafted bead collections.
       </p>
-      {/* Custom Controller Buttons (Desktop & Mobile) */}
-      <div className="flex justify-end gap-3 mb-4">
-        <button
-          className="bg-pink-600 hover:bg-pink-700 text-white rounded-full p-2 shadow transition"
-          onClick={() => swiperRef.current?.slidePrev()}
-          aria-label="Previous Category"
-        >
-          <FaArrowLeft size={22} />
-        </button>
-        <button
-          className="bg-pink-600 hover:bg-pink-700 text-white rounded-full p-2 shadow transition"
-          onClick={() => swiperRef.current?.slideNext()}
-          aria-label="Next Category"
-        >
-          <FaArrowRight size={22} />
-        </button>
-      </div>
-      <Swiper
-        modules={[FreeMode]}
-        spaceBetween={20}
-        slidesPerView={2}
-        grabCursor={true}
-        freeMode={true}
-        breakpoints={{
-          640: {
-            slidesPerView: 3,
-          },
-          768: {
-            slidesPerView: 4,
-          },
-          1024: {
-            slidesPerView: 5,
-          },
-        }}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        ref={swiperRef}
-        className="flex"
-      >
+      
+      <div className="flex w-[95%] mx-auto overflow-scroll no-scroll-bar">
         {categories.map((cat) => (
           <div key={cat.category}>
             <div className="flex flex-col items-center p-4">
@@ -84,7 +48,7 @@ const Categories = () => {
             </div>
           </div>
         ))}
-      </Swiper>
+      </div>
     </div>
   );
 };
