@@ -1,5 +1,10 @@
+"use client";
+import React, { useRef } from "react";
 import Image from "next/image";
-import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/free-mode";
 
 const products = [
   {
@@ -53,37 +58,49 @@ const products = [
 ];
 
 const Product = () => {
+  const swiperRef = useRef<any>(null);
   return (
     <div className="py-10 px-4 max-w-6xl mx-auto">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
         Our Best Selling Items
       </h1>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <Swiper
+        modules={[FreeMode]}
+        spaceBetween={16}
+        slidesPerView={2}
+        grabCursor={true}
+        freeMode={true}
+        breakpoints={{
+          640: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 },
+        }}
+        ref={swiperRef}
+        className="mb-8"
+      >
         {products.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white rounded-lg shadow flex flex-col items-center p-2 hover:shadow-lg transition"
-          >
-            <Image
-              src={product.image}
-              alt={product.name}
-              className="w-20 h-20 object-cover rounded mb-2"
-              width={80}
-              height={80}
-              priority
-            />
-            <h2 className="text-base font-semibold mb-1 text-center line-clamp-2">
-              {product.name}
-            </h2>
-            <p className="text-pink-600 font-bold text-sm mb-2">
-              {product.price}
-            </p>
-            <button className="bg-pink-600 hover:bg-pink-700 text-white px-3 py-1 rounded-full font-medium text-xs transition">
-              Buy Now
-            </button>
-          </div>
+          <SwiperSlide key={product.id}>
+            <div className="bg-white rounded-lg shadow flex flex-col items-center p-2 hover:shadow-lg transition">
+              <Image
+                src={product.image}
+                alt={product.name}
+                className="w-20 h-20 object-cover rounded mb-2"
+                width={80}
+                height={80}
+                priority
+              />
+              <h2 className="text-base font-semibold mb-1 text-center line-clamp-2">
+                {product.name}
+              </h2>
+              <p className="text-pink-600 font-bold text-sm mb-2">
+                {product.price}
+              </p>
+              <button className="bg-pink-600 hover:bg-pink-700 text-white px-5 py-1 rounded-full font-medium text-xs transition">
+                Buy Now
+              </button>
+            </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
       <div className="flex justify-center">
         <button className="bg-gray-900 hover:bg-gray-700 text-white px-8 py-3 rounded-full font-semibold text-lg transition">
           View All Products

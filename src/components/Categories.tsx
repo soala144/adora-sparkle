@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, FreeMode } from "swiper/modules";
+import { FreeMode } from "swiper/modules";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -21,6 +22,7 @@ const categories = [
 ];
 
 const Categories = () => {
+  const swiperRef = useRef<any>(null);
   return (
     <div className="py-8 px-4 bg-gray-50">
       <h2 className="text-3xl font-bold text-center mb-4">Shop by Category</h2>
@@ -28,14 +30,29 @@ const Categories = () => {
         Swipe through our beautiful handcrafted bead collections.
       </p>
 
+      {/* Custom Controller Buttons (Desktop & Mobile) */}
+      <div className="flex justify-end gap-3 mb-4">
+        <button
+          className="bg-pink-600 hover:bg-pink-700 text-white rounded-full p-2 shadow transition"
+          onClick={() => swiperRef.current?.slidePrev()}
+          aria-label="Previous Category"
+        >
+          <FaArrowLeft size={22} />
+        </button>
+        <button
+          className="bg-pink-600 hover:bg-pink-700 text-white rounded-full p-2 shadow transition"
+          onClick={() => swiperRef.current?.slideNext()}
+          aria-label="Next Category"
+        >
+          <FaArrowRight size={22} />
+        </button>
+      </div>
       <Swiper
-        modules={[Navigation, Pagination, FreeMode]}
+        modules={[FreeMode]}
         spaceBetween={20}
         slidesPerView={2}
         grabCursor={true}
         freeMode={true}
-        navigation
-        pagination={{ clickable: true }}
         breakpoints={{
           640: {
             slidesPerView: 3,
@@ -47,6 +64,8 @@ const Categories = () => {
             slidesPerView: 5,
           },
         }}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        ref={swiperRef}
       >
         {categories.map((cat) => (
           <SwiperSlide key={cat.category}>

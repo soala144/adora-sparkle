@@ -86,13 +86,15 @@ const Reviews: React.FC = () => {
             <SwiperSlide key={idx} className="flex h-full">
               <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full w-full mx-2 border border-pink-100 hover:shadow-2xl transition min-h-[320px]">
                 <div className="flex flex-col items-center mb-3">
-                  <Image
-                    src={r.image}
-                    alt={r.name}
-                    width={64}
-                    height={64}
-                    className="rounded-full border-2 border-pink-300 mb-2 object-cover"
-                  />
+                  <div className="flex items-center justify-center w-20 h-20 md:w-24 md:h-24 mb-2">
+                    <Image
+                      src={r.image}
+                      alt={r.name}
+                      width={96}
+                      height={96}
+                      className="rounded-full border-2 border-pink-300 object-cover w-full h-full"
+                    />
+                  </div>
                   <span className="font-semibold text-pink-700 text-base mb-1">
                     {r.name}
                   </span>
