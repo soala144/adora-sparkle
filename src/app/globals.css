@@ -7,6 +7,11 @@
 }
 /* Tailwind theme configuration removed from CSS. Add custom animations in tailwind.config.js instead. */
 
+body,
+html {
+  font-family: "Poppins", sans-serif !important;
+}
+
 @layer utilities {
   .animate-slide-in {
     animation: slideIn 0.3s ease forwards;
@@ -23,8 +28,8 @@
 }
 
 .no-scroll-bar {
-  overflow: auto;       /* or scroll */
-  scrollbar-width: none;  /* Firefox */
+  overflow: auto; /* or scroll */
+  scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
 }
 
