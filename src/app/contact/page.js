@@ -28,13 +28,14 @@ export const metadata = {
     canonical: "https://adorasparkles.com/contact",
   },
 };
+import ContactUs from "@/components/ContactUs";
 import React from "react";
 // import Image from "next/image";
 
 const page = () => {
   return (
     <div>
-      <p className="mt-10">Contact Us </p>
+        <ContactUs />
     </div>
   );
 };
