@@ -2,17 +2,17 @@ import React from "react";
 
 const DashboardMain = () => {
   return (
-    <div className="lg:w-[76%] w-full">
-      <div className="grid lg:grid-cols-3 h-35 gap-2 lg:gap-7">
-        <div className="bg-[#ff66d1] relative text-white pl-7 pt-5 rounded-lg">
+    <div className="lg:w-[76%] md:w-[60%] w-full">
+      <div className="grid lg:grid-cols-3 lg:h-35 h-auto gap-2 lg:gap-7">
+        <div className="bg-[#ff66d1] relative text-white pl-7 h-35 lg:h-full pt-5 rounded-lg">
           <h3 className="text-[18px] font-bold">Shipped Orders</h3>
           <h2 className="absolute bottom-5 text-[30px] font-bold right-[30px]">0</h2>
         </div>
-        <div className="bg-pink-500 rounded-lg relative text-white pl-7 pt-5">
+        <div className="bg-pink-500 rounded-lg relative text-white pl-7 pt-5 h-35 lg:h-full">
           <h3 className="text-[18px] font-bold">Pending Orders</h3>
           <h2 className="absolute bottom-5 text-[30px] font-bold right-[30px]">0</h2>
         </div>
-        <div className="bg-[#f653c5] relative text-white pl-7 pt-5 rounded-lg">
+        <div className="bg-[#f653c5] relative text-white pl-7 pt-5 rounded-lg h-35 lg:h-full">
           <h3 className="text-[18px] font-bold">New Orders</h3>
           <h2 className="absolute bottom-5 text-[30px] font-bold right-[30px]">0</h2>
         </div>
@@ -34,7 +34,7 @@ const DashboardMain = () => {
             </p>
           </div>
         </div>
-        <div className="bg-white rounded-lg relative">
+        <div className="bg-white rounded-lg relative mt-7 lg:mt-0 lg:h-full h-[525px]">
           <h2 className="font-semibold pl-[29px] pt-3 text-[18px]">
             Today's Trend
           </h2>
