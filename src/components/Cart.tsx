@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { GoPlus } from "react-icons/go";
 import { LuMinus } from "react-icons/lu";
 import { GiTrashCan } from "react-icons/gi";
+import { MdShoppingCart } from "react-icons/md";
+import Link from "next/link";
 
 interface CartItems {
   id: number;
@@ -44,10 +46,29 @@ const Cart: React.FC = () => {
       discount: null,
     },
   ];
-  
-  const itemsCost:number = cartItems.map(item => item.price * item.quantity).reduce((acc, curr) => acc+curr)
-  const discountCost:number = cartItems.map(item => item.discount ?? 1).reduce((acc, curr) => acc+curr)
-  const totalCost:number = itemsCost - ((discountCost / 100) * itemsCost)
+
+  // const cartItems: CartItems[] = [];
+
+  const itemsCost: number = cartItems
+    .map((item) => item.price * item.quantity)
+    .reduce((acc, curr) => acc + curr, 0);
+  const discountCost: number =
+    (cartItems
+      .map((item) => item.discount ?? 1)
+      .reduce((acc, curr) => acc + curr, 0) /
+      100) *
+    itemsCost;
+  const totalCost: number = itemsCost - discountCost;
+
+  if (cartItems.length === 0)
+    return (
+      <div className="mt-30 mb-20 text-gray-500">
+        <p className="text-center font-semibold text-2xl sm:text-3xl">
+          Empty Cart. Kindly Add!
+        </p>
+        <MdShoppingCart size={150} className="block mx-auto mt-5" />
+      </div>
+    );
 
   return (
     <div className="pt-20 w-[90%] mx-auto max-w-[1440px]">
@@ -67,7 +88,11 @@ const Cart: React.FC = () => {
               }`}
             >
               <div className="min-[400px]:flex gap-3 items-center">
-                <img src={item.img} alt="" className="sm:size-30 max-[400px]:block max-[400px]:mx-auto size-24" />
+                <img
+                  src={item.img}
+                  alt=""
+                  className="sm:size-30 max-[400px]:block max-[400px]:mx-auto size-24"
+                />
                 <div className=" w-[60%] max-[400px]:w-[94%]">
                   <p className="font-bold  truncate text-2xl capitalize">
                     {item.name}
@@ -100,12 +125,15 @@ const Cart: React.FC = () => {
             <p>Items Cost</p>
             <p className="text-right">{itemsCost}</p>
             <p className="my-3">Discount Cost</p>
-            <p className="text-right my-3">{discountCost}%</p>
+            <p className="text-right my-3 text-red-800">-&#8358;{discountCost}</p>
             <p>Total</p>
             <p className="text-right">{totalCost}</p>
-            <button className="py-3 bg-[#ff66d1] col-span-2 text-white rounded-xl mt-7 cursor-pointer">
-              Checkout Orders
-            </button>
+            <Link
+              href="/checkout"
+              className="py-3 bg-[#ff66d1] disabled:bg-[#ff66d1]/50 col-span-2 text-white rounded-xl mt-7 cursor-pointer"
+            >
+              <p className="text-center">Checkout Orders</p>
+            </Link>
           </div>
         </div>
       </div>
