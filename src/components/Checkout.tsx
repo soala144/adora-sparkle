@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { type CartItems } from "./Cart";
+import Image from "next/image";
 
 const Checkout = () => {
   const cartItems: CartItems[] = [
@@ -114,7 +115,7 @@ const Checkout = () => {
             {cartItems.map((item, i) => (
               <div key={item.id} className="flex items-center justify-between">
                 <div className="w-[80%] flex items-center gap-2">
-                  <img src={item.img} alt="" className="size-14" />
+                  <Image src={item.img} alt="" className="size-14" />
                   <p className="max-w-full font-medium truncate">{item.name}</p>
                 </div>
                 <p>{item.price}</p>

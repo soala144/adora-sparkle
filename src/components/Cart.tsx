@@ -5,6 +5,7 @@ import { LuMinus } from "react-icons/lu";
 import { GiTrashCan } from "react-icons/gi";
 import { MdShoppingCart } from "react-icons/md";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface CartItems {
   id: number;
@@ -88,7 +89,7 @@ const Cart: React.FC = () => {
               }`}
             >
               <div className="min-[400px]:flex gap-3 items-center">
-                <img
+                <Image
                   src={item.img}
                   alt=""
                   className="sm:size-30 max-[400px]:block max-[400px]:mx-auto size-24"
