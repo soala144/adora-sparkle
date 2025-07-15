@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import { MdShoppingCart } from "react-icons/md";
 import Link from "next/link";
 
-interface CartItems {
+export interface CartItems {
   id: number;
   name: string;
   price: number;
