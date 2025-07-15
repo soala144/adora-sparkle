@@ -1,7 +1,7 @@
-import React from "react";
+import Checkout from "../../components/Checkout"
 
 const page = () => {
-  return <div>page</div>;
+  return <Checkout />
 };
 
 export default page;

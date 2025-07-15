@@ -28,7 +28,6 @@ export const metadata = {
     canonical: "https://adorasparkles.com/guide",
   },
 };
-"use client";
 
 import React from "react";
 import {
@@ -68,7 +67,7 @@ const steps = [
 const page = () => {
   return (
     <section className="py-16 mt-4 px-6 md:px-20 bg-gray-50 text-gray-800">
-      <div className="max-w-5xl mx-auto text-center">
+      <div className="max-w-5xl pt-10 mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           How to Order from Adora Sparkles
         </h2>
