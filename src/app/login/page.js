@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-("use client");
+import Link from "next/link";
 import Image from "next/image";
 const page = () => {
   return (
@@ -54,13 +56,13 @@ const page = () => {
           </button>
         </div>
         <p className="mt-[34px] text-black/70">
-          Don't have an Account?
-          {/* <Link
-              to="/login"
-              className="underline font-medium underline-offset-[7px]"
-            > */}
-          Sign Up
-          {/* </Link> */}
+          Don&apos;t have an Account?
+          <Link
+            href="/signup"
+            className="underline font-medium underline-offset-[7px]"
+          >
+            Sign Up
+          </Link>
         </p>
       </form>
     </div>
