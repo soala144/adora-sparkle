@@ -115,7 +115,14 @@ const Checkout = () => {
             {cartItems.map((item, i) => (
               <div key={item.id} className="flex items-center justify-between">
                 <div className="w-[80%] flex items-center gap-2">
-                  <Image src={item.img} alt="" className="size-14" />
+                  <Image
+                    src={item.img}
+                    alt=""
+                    className="size-14"
+                    width={192}
+                    height={192}
+                    priority
+                  />
                   <p className="max-w-full font-medium truncate">{item.name}</p>
                 </div>
                 <p>{item.price}</p>

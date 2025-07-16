@@ -93,6 +93,9 @@ const Cart: React.FC = () => {
                   src={item.img}
                   alt=""
                   className="sm:size-30 max-[400px]:block max-[400px]:mx-auto size-24"
+                  width={192}
+                  height={192}
+                  priority
                 />
                 <div className=" w-[60%] max-[400px]:w-[94%]">
                   <p className="font-bold  truncate text-2xl capitalize">
@@ -126,7 +129,9 @@ const Cart: React.FC = () => {
             <p>Items Cost</p>
             <p className="text-right">{itemsCost}</p>
             <p className="my-3">Discount Cost</p>
-            <p className="text-right my-3 text-red-800">-&#8358;{discountCost}</p>
+            <p className="text-right my-3 text-red-800">
+              -&#8358;{discountCost}
+            </p>
             <p>Total</p>
             <p className="text-right">{totalCost}</p>
             <Link
