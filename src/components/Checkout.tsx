@@ -34,13 +34,13 @@ const Checkout = () => {
     },
   ];
 
-  const deliveryFee = null;
+  const deliveryFee: number | null = null;
   const sub = cartItems
     .map((item) => item.price * item.quantity)
     .reduce((acc, curr) => acc + curr, 0);
 
   return (
-    <div className="pt-20 w-[90%] mx-auto max-w-[1440px]">
+    <div className="pt-20 w-[90%] mx-auto max-w-[1440px] lg:text-2xl">
       <h1 className="uppercase lg:capitalize text-3xl lg:text-4xl text-center font-bold my-10">
         Billing Details
       </h1>
@@ -110,7 +110,7 @@ const Checkout = () => {
             />
           </div>
         </div>
-        <div className="lg:w-[420px]">
+        <div className="lg:w-[490px]">
           <div className="flex flex-col gap-8">
             {cartItems.map((item, i) => (
               <div key={item.id} className="flex items-center justify-between">
@@ -125,14 +125,14 @@ const Checkout = () => {
                   />
                   <p className="max-w-full font-medium truncate">{item.name}</p>
                 </div>
-                <p>{item.price}</p>
+                <p>{item.price.toLocaleString()}</p>
               </div>
             ))}
           </div>
           <div className="mt-8">
             <div className="border-b-2  py-3 px-2 border-b-gray-400 flex items-center justify-between">
               <p>Subtotal</p>
-              <p>{sub}</p>
+              <p>&#8358;{sub.toLocaleString()}</p>
             </div>
             <div className="border-b-2  py-3 px-2 border-b-gray-400 flex items-center justify-between">
               <p>Delivery fee</p>
@@ -140,7 +140,7 @@ const Checkout = () => {
             </div>
             <div className="py-3 px-2 flex items-center justify-between">
               <p>Total</p>
-              <p>{sub - (deliveryFee ?? 0)}</p>
+              <p>&#8358;{(sub - (deliveryFee ?? 0)).toLocaleString()}</p>
             </div>
             <button className="text-center h-12 bg-[#ff66d1] w-full text-white mb-[100px] lg:mb-0 rounded">
               Place Order
