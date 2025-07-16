@@ -5,8 +5,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
+import { HiShoppingCart } from "react-icons/hi";
 
-const products = [
+const products: {id: number; name: string; image: string; price: string}[] = [
   {
     id: 1,
     name: "Kouya Waist Bead",
@@ -79,7 +80,7 @@ const Product = () => {
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <div className="bg-white rounded-lg my-3 shadow-lg flex flex-col items-center p-2 hover:shadow-lg transition">
+            <div className="bg-white rounded-lg my-3 flex flex-col items-center hover:shadow-lg transition">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -94,8 +95,9 @@ const Product = () => {
               <p className="text-pink-600 font-bold text-[18px] text-sm mb-2">
                 {product.price}
               </p>
-              <button className="bg-pink-600 text-[18px] hover:bg-pink-700 cursor-pointer text-white px-5 w-full py-3 rounded-md font-medium text-xs transition">
-                Buy Now
+              <button className="bg-pink-600 text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
+                <HiShoppingCart size={20} />
+                <p>Add to Cart</p>
               </button>
             </div>
           </SwiperSlide>

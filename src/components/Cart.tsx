@@ -72,7 +72,7 @@ const Cart: React.FC = () => {
     );
 
   return (
-    <div className="pt-20 w-[90%] mx-auto max-w-[1440px] lg:text-2xl">
+    <div className="pt-20 w-[90%] mx-auto max-w-[1440px] lg:text-xl">
       <h1 className="text-4xl lg:text-5xl uppercase lg:capitalize font-bold text-center my-8">
         My Cart
       </h1>
