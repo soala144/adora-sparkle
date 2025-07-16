@@ -72,7 +72,7 @@ const Cart: React.FC = () => {
     );
 
   return (
-    <div className="pt-20 w-[90%] mx-auto max-w-[1440px]">
+    <div className="pt-20 w-[90%] mx-auto max-w-[1440px] lg:text-2xl">
       <h1 className="text-4xl lg:text-5xl uppercase lg:capitalize font-bold text-center my-8">
         My Cart
       </h1>
@@ -104,7 +104,7 @@ const Cart: React.FC = () => {
                   <p className="text-xs text-gray-400 mt-2 mb-1">
                     {item.inStock ? "In Stock" : "Out of Stock"}
                   </p>
-                  <p className="max-[400px]:mb-10">&#8358;{item.price}</p>
+                  <p className="max-[400px]:mb-10">&#8358;{item.price.toLocaleString()}</p>
                 </div>
               </div>
               <div className="duration-500 cursor-pointer absolute bottom-0 left-5 my-3 flex gap-1/2 items-center text-[#ff66d1] hover:text-[#dd6262]">
@@ -123,17 +123,17 @@ const Cart: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="lg:w-[30%] shadow rounded-lg h-fit p-5 mt-6 lg:mt-0">
+        <div className="lg:w-[30%] shadow rounded-lg h-fit p-5 mt-6 lg:mt-0 lg:text-xl">
           <h2 className="text-xl font-semibold">Cart Summary</h2>
           <div className="grid mt-4 grid-cols-2">
             <p>Items Cost</p>
-            <p className="text-right">{itemsCost}</p>
+            <p className="text-right">&#8358;{itemsCost.toLocaleString()}</p>
             <p className="my-3">Discount Cost</p>
             <p className="text-right my-3 text-red-800">
-              -&#8358;{discountCost}
+              -&#8358;{discountCost.toLocaleString()}
             </p>
             <p>Total</p>
-            <p className="text-right">{totalCost}</p>
+            <p className="text-right">&#8358;{totalCost.toLocaleString()}</p>
             <Link
               href="/checkout"
               className="py-3 bg-[#ff66d1] disabled:bg-[#ff66d1]/50 col-span-2 text-white rounded-xl mt-7 cursor-pointer"
