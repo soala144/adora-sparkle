@@ -63,12 +63,12 @@ const page = () => {
         </div>
         <p className="mt-[34px] text-black/70">
           Already have an account?
-          {/* <Link
-            to="/login"
+          <Link
+            href="/login"
             className="underline font-medium underline-offset-[7px]"
-          > */}
-          Log In
-          {/* </Link> */}
+          >
+            Log In
+          </Link>
         </p>
       </form>
     </div>
