@@ -33,11 +33,13 @@ const ContactUs = () => {
           <div className="lg:mt-[110px]">
             <div className="w-fit lg:w-full max-lg:mx-auto mt-3 gap-[10px] lg:gap-[25px] lg:items-center flex flex-col lg:flex-row">
               <LuPhoneCall size={24} className="max-lg:mx-auto" />
-              <p className="text-xs lg:text-base">+1012 3456 789</p>
+              <p className="text-xs lg:text-base">+234 814 821 9109</p>
             </div>
             <div className="w-fit lg:w-full max-lg:mx-auto mt-3 gap-[10px] lg:gap-[25px] lg:items-center flex flex-col lg:flex-row">
               <MdOutlineMailOutline size={24} className="max-lg:mx-auto" />
-              <p className="text-xs lg:text-base">demo@gmail.com</p>
+              <p className="text-xs lg:text-base">
+                robinsonadoration@gmail.com
+              </p>
             </div>
             <div className="w-fit lg:w-full max-lg:mx-auto mt-3 lg:gap-[25px] gap-[10px] flex flex-col lg:flex-row">
               <MdLocationPin size={24} className="max-lg:mx-auto" />
@@ -82,6 +84,7 @@ const ContactUs = () => {
                   name="lastName"
                   placeholder="Doe"
                   className="outline-none mt-3 border-b-2 border-[#8D8D8D] pb-1"
+                  required
                 />
               </div>
               <div className="flex flex-col lg:my-0 my-5">
@@ -93,6 +96,7 @@ const ContactUs = () => {
                   name="email"
                   placeholder="example@gmail.com"
                   className="outline-none mt-3 border-b-2 border-[#8D8D8D] pb-1"
+                  required
                 />
               </div>
               <div className="flex flex-col">
@@ -104,6 +108,7 @@ const ContactUs = () => {
                   name="telNum"
                   placeholder="Your phone number"
                   className="outline-none mt-3 border-b-2 border-[#8D8D8D] pb-1"
+                  required
                 />
               </div>
               <div className="flex flex-col my-5 lg:my-0 col-span-2">
