@@ -28,10 +28,11 @@ export const metadata = {
     canonical: "https://adorasparkles.com/products",
   },
 };
+import ProductPg from "@/components/ProductPg";
 import React from "react";
 
 const page = () => {
-  return <div>page</div>;
+  return <ProductPg />;
 };
 
 export default page;
