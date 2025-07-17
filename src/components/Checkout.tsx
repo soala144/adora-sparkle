@@ -53,7 +53,7 @@ const Checkout = () => {
             <input
               type="text"
               name="fullName"
-              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-[#F5F5F5] mt-2"
+              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-gray-400 mt-2"
             />
           </div>
           <div className="flex flex-col">
@@ -66,7 +66,7 @@ const Checkout = () => {
             <input
               type="email"
               name="emailAddress"
-              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-[#F5F5F5] mt-2"
+              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-gray-400 mt-2"
             />
           </div>
           <div className="flex flex-col">
@@ -76,7 +76,7 @@ const Checkout = () => {
             <input
               type="text"
               name="companyName"
-              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-[#F5F5F5] mt-2"
+              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-gray-400 mt-2"
             />
           </div>
           <div className="flex flex-col">
@@ -86,7 +86,7 @@ const Checkout = () => {
             <input
               type="text"
               name="street"
-              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-[#F5F5F5] mt-2"
+              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-gray-400 mt-2"
             />
           </div>
           <div className="flex flex-col">
@@ -96,7 +96,7 @@ const Checkout = () => {
             <input
               type="text"
               name="town/city"
-              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-[#F5F5F5] mt-2"
+              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-gray-400 mt-2"
             />
           </div>
           <div className="flex flex-col">
@@ -106,7 +106,7 @@ const Checkout = () => {
             <input
               type="number"
               name="telNum"
-              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-[#F5F5F5] mt-2"
+              className="outline-none h-12 px-3 rounded min-[1240px]:w-[520px] bg-gray-400 mt-2"
             />
           </div>
         </div>
