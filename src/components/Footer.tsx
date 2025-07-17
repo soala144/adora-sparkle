@@ -54,7 +54,7 @@ const Footer = () => {
           <h4 className="text-lg font-semibold mb-4">Get in Touch</h4>
           <p className="text-sm text-gray-400 mb-2">adorasparkles@gmail.com</p>
           <p className="text-sm text-gray-400 mb-2">
-            WhatsApp: +234-812-XXX-XXXX
+            WhatsApp: +234-814-821-9109
           </p>
           <div className="flex gap-4 mt-4">
             <a
