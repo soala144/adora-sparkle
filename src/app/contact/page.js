@@ -1,10 +1,13 @@
 export const metadata = {
   title: "Contact | Adora Sparkles",
-  description: "Contact Adora Sparkles for inquiries, support, or custom orders. We're here to help you shine!",
-  keywords: "contact, support, help, Adora Sparkles, Nigeria, jewelry, beads, accessories, customer service",
+  description:
+    "Contact Adora Sparkles for inquiries, support, or custom orders. We're here to help you shine!",
+  keywords:
+    "contact, support, help, Adora Sparkles, Nigeria, jewelry, beads, accessories, customer service",
   openGraph: {
     title: "Contact | Adora Sparkles",
-    description: "Contact Adora Sparkles for inquiries, support, or custom orders. We're here to help you shine!",
+    description:
+      "Contact Adora Sparkles for inquiries, support, or custom orders. We're here to help you shine!",
     url: "https://adorasparkles.com/contact",
     siteName: "Adora Sparkles",
     images: [
@@ -21,7 +24,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact | Adora Sparkles",
-    description: "Contact Adora Sparkles for inquiries, support, or custom orders. We're here to help you shine!",
+    description:
+      "Contact Adora Sparkles for inquiries, support, or custom orders. We're here to help you shine!",
     images: ["/images/logo.jpg"],
   },
   alternates: {
@@ -35,7 +39,7 @@ import React from "react";
 const page = () => {
   return (
     <div>
-        <ContactUs />
+      <ContactUs />
     </div>
   );
 };
