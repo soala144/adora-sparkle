@@ -7,7 +7,7 @@ const page = () => {
   return (
     <div>
       {/* Story Section */}
-      <div className="flex flex-col md:flex-row w-[90%] items-center justify-between m-auto my-8">
+      <div className="flex flex-col max-lg:pt-20 lg:flex-row w-[90%] items-center justify-between lg:gap-16 m-auto my-8">
         <div>
           <h1 className="text-[50px] font-semibold text-pink-600 max-[1170px]:text-center">
             Our Story
@@ -79,7 +79,7 @@ const page = () => {
 
       {/* Timeline/History Section */}
       <div className="w-[90%] mx-auto my-12">
-        <h2 className="text-3xl font-bold text-pink-600 mb-8">Our Journey</h2>
+        <h2 className="text-3xl font-bold text-pink-600 mb-8 text-center">Our Journey</h2>
         <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
           <div className="flex flex-col items-center">
             <div className="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mb-2">
@@ -308,10 +308,10 @@ function FAQAccordion() {
         return (
           <div
             key={idx}
-            className={`border border-pink-200 rounded-xl bg-white shadow transition`}
+            className={`border border-pink-200 rounded-xl bg-white shadow transition-all`}
           >
             <button
-              className="w-full flex items-center justify-between text-left px-6 py-4 font-semibold text-pink-600 focus:outline-none"
+              className="w-full flex items-center justify-between text-left px-6 py-4  cursor-pointer duration-500 transition-all font-semibold text-pink-600 focus:outline-none"
               onClick={() => setOpenIndex(isOpen ? null : idx)}
             >
               <span>{faq.question}</span>
