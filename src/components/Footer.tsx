@@ -58,7 +58,7 @@ const Footer = () => {
           </p>
           <div className="flex gap-4 mt-4">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/adora.sparkles_?igsh=MTNiaGxieDBiZTZ2ZA%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -72,7 +72,7 @@ const Footer = () => {
               <FaFacebookF size={20} className="hover:text-pink-500" />
             </a>
             <a
-              href="https://tiktok.com"
+              href="https://www.tiktok.com/@adorasparkles_?_t=ZM-8y69xgGNcLF&_r=1"
               target="_blank"
               rel="noopener noreferrer"
             >

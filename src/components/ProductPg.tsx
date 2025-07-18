@@ -150,20 +150,25 @@ const ProductPg = () => {
                       className="bg-white max-[410px]:mt-3 rounded-lg my-3 cursor-pointer flex flex-col items-center hover:shadow-lg transition"
                       key={i}
                     >
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        className="w-30 h-20 block mx-auto object-cover rounded mb-2"
-                        width={130}
-                        height={80}
-                        priority
-                      />
-                      <h2 className="text-[20px] font-semibold w-[95%] text-center truncate mb-1 line-clamp-2">
-                        {product.name}
-                      </h2>
-                      <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
-                        {product.price}
-                      </p>
+                      <a
+                        href={`/products/${product.id}`}
+                        className="w-full flex flex-col items-center"
+                      >
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          className="w-30 h-20 block mx-auto object-cover rounded mb-2"
+                          width={130}
+                          height={80}
+                          priority
+                        />
+                        <h2 className="text-[20px] font-semibold w-[95%] text-center truncate mb-1 line-clamp-2">
+                          {product.name}
+                        </h2>
+                        <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
+                          {product.price}
+                        </p>
+                      </a>
                       <button className="bg-[#ff66d1] text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
                         <HiShoppingCart size={20} />
                         <p>Add to Cart</p>
@@ -207,22 +212,26 @@ const ProductPg = () => {
                   className="bg-white max-[410px]:mt-3 rounded-lg my-3 cursor-pointer flex flex-col items-center hover:shadow-lg transition"
                   key={i}
                 >
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    className="w-30 h-20 block mx-auto object-cover rounded mb-2"
-                    width={130}
-                    height={80}
-                    priority
-                  />
-                  <h2 className="text-[20px] font-semibold w-[95%] text-center truncate mb-1 line-clamp-2">
-                    {product.name}
-                  </h2>
-                  <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
-                    {product.price}
-                  </p>
-                  <button className="bg-[#ff66d1] min-[350px]:text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 
-                  max-[450]:py-1 rounded-b-md font-medium text-sm transition-all">
+                  <a
+                    href={`/products/${product.id}`}
+                    className="w-full flex flex-col items-center"
+                  >
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      className="w-30 h-20 block mx-auto object-cover rounded mb-2"
+                      width={130}
+                      height={80}
+                      priority
+                    />
+                    <h2 className="text-[20px] font-semibold w-[95%] text-center truncate mb-1 line-clamp-2">
+                      {product.name}
+                    </h2>
+                    <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
+                      {product.price}
+                    </p>
+                  </a>
+                  <button className="bg-[#ff66d1] min-[350px]:text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
                     <HiShoppingCart size={20} />
                     <p>Add to Cart</p>
                   </button>
