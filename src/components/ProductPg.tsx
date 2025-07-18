@@ -195,7 +195,7 @@ const ProductPg = () => {
           })}
         </div>
       </div>
-      <div className="w-[90%] mx-auto min-[640px]:hidden">
+      <div className="w-[95%] mx-auto min-[640px]:hidden">
         {categories.map((item, i) => (
           <div key={i}>
             <h2 className="my-6 text-pink-600 text-2xl text-center capitalize font-semibold">
@@ -221,7 +221,8 @@ const ProductPg = () => {
                   <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
                     {product.price}
                   </p>
-                  <button className="bg-[#ff66d1] min-[350px]:text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
+                  <button className="bg-[#ff66d1] min-[350px]:text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 
+                  max-[450]:py-1 rounded-b-md font-medium text-sm transition-all">
                     <HiShoppingCart size={20} />
                     <p>Add to Cart</p>
                   </button>
