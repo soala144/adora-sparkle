@@ -200,7 +200,7 @@ const ProductPg = () => {
           })}
         </div>
       </div>
-      <div className="w-[90%] mx-auto min-[640px]:hidden">
+      <div className="w-[95%] mx-auto min-[640px]:hidden">
         {categories.map((item, i) => (
           <div key={i}>
             <h2 className="my-6 text-pink-600 text-2xl text-center capitalize font-semibold">
