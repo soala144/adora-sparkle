@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import { HiShoppingCart } from "react-icons/hi";
 
-const products: {id: number; name: string; image: string; price: string}[] = [
+const products: { id: number; name: string; image: string; price: string }[] = [
   {
     id: 1,
     name: "Kouya Waist Bead",
@@ -65,44 +65,72 @@ const Product = () => {
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
         Our Best Selling Items
       </h1>
-      <Swiper
-        modules={[FreeMode]}
-        spaceBetween={16}
-        slidesPerView={2}
-        grabCursor={true}
-        freeMode={true}
-        breakpoints={{
-          640: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
-        }}
-        ref={swiperRef}
-        className="mb-8"
-      >
-        {products.map((product) => (
-          <SwiperSlide key={product.id}>
-            <div className="bg-white rounded-lg my-3 flex flex-col items-center hover:shadow-lg transition">
-              <Image
-                src={product.image}
-                alt={product.name}
-                className="w-30 h-20 block mx-auto object-cover rounded mb-2"
-                width={130}
-                height={80}
-                priority
-              />
-              <h2 className="text-[20px] font-semibold mb-1 line-clamp-2">
-                {product.name}
-              </h2>
-              <p className="text-pink-600 font-bold text-[18px] text-sm mb-2">
-                {product.price}
-              </p>
-              <button className="bg-pink-600 text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
-                <HiShoppingCart size={20} />
-                <p>Add to Cart</p>
-              </button>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="hidden lg:block">
+        <Swiper
+          modules={[FreeMode]}
+          spaceBetween={16}
+          slidesPerView={2}
+          grabCursor={true}
+          freeMode={true}
+          breakpoints={{
+            640: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+          }}
+          ref={swiperRef}
+          className="mb-8 hidden lg:block"
+        >
+          {products.map((product) => (
+            <SwiperSlide key={product.id}>
+              <div className="bg-white rounded-lg my-3 flex flex-col items-center hover:shadow-lg transition">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  className="w-30 h-20 block mx-auto object-cover rounded mb-2"
+                  width={130}
+                  height={80}
+                  priority
+                />
+                <h2 className="text-[20px] w-full truncate font-semibold mb-1 line-clamp-2">
+                  {product.name}
+                </h2>
+                <p className="text-pink-600 font-bold text-[18px] text-sm mb-2">
+                  {product.price}
+                </p>
+                <button className="bg-pink-600 text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
+                  <HiShoppingCart size={20} />
+                  <p>Add to Cart</p>
+                </button>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className="grid-cols-2 sm:grid-cols-3 grid lg:hidden gap-3">
+          {
+            products.map((product, i) => (
+              <div key={i} className="bg-white rounded-lg my-3 flex flex-col items-center hover:shadow-lg transition">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  className="w-30 h-20 block mx-auto object-cover rounded mb-2"
+                  width={130}
+                  height={80}
+                  priority
+                />
+                <h2 className="text-[20px] w-full truncate font-semibold mb-1 line-clamp-2">
+                  {product.name}
+                </h2>
+                <p className="text-pink-600 font-bold text-[18px] text-sm mb-2">
+                  {product.price}
+                </p>
+                <button className="bg-pink-600 max-[380px]:text-xs text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
+                  <HiShoppingCart size={20} />
+                  <p>Add to Cart</p>
+                </button>
+              </div>
+            ))
+          }
+      </div>
       <div className="flex justify-center">
         <button className="bg-gray-900 hover:bg-gray-700 text-white px-8 py-3 rounded-full font-semibold text-lg transition">
           View All Products
