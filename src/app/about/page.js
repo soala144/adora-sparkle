@@ -13,15 +13,16 @@ const page = () => {
           <h1 className="text-[50px] font-semibold text-pink-600 max-[1170px]:text-center">
             Our Story
           </h1>
-          <p className="mt-10 mb-6 text-xl text-black">
-            Launched in 2015, Adora Sparkles is Nigeria’s premier online jewelry
-            brand, founded by two passionate entrepreneurs. We blend tradition
-            and innovation to empower women and celebrate beauty.
-          </p>
-          <p className="text-[14px] max-[1170px]:w-[81.25%] max-[1170px]:mx-auto max-[1170px]:text-center text-black">
-            Adora Sparkles offers a diverse assortment of handcrafted jewelry
-            and accessories, growing rapidly and serving thousands of happy
-            customers nationwide.
+          <p className="mt-10 mb-6 text-xl text-black"></p>
+          <p className="text-[20px] max-[1170px]:w-[81.25%] max-[1170px]:mx-auto max-[1170px]:text-center text-black">
+            AdoraSparkles is a brand born out of passion and love for
+            Aesthetics. This brand has been in existence for 4 years now. It is
+            for the girls who love both minimalist and maximalist fashion sense.
+            It&apos;s a brand that caters for different aesthetics. We embody
+            Luxury without guilt,Confidence in every thread and it&apos;s
+            basically a brand for the Soft girlies who want to be more in thier
+            feminine energy 🤍✨ Do you want to be part of the girlies? Welll
+            head over to the shopping corner and make a purchase 
           </p>
         </div>
         <Image
