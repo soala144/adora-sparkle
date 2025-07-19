@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const page = () => {
@@ -62,24 +63,26 @@ const page = () => {
         </ul>
         {/* Call to Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-          <a
+          <Link
             href="/contact"
             className="px-6 py-3 rounded-full bg-pink-600 text-white font-bold shadow hover:bg-pink-700 transition"
           >
             Contact Us
-          </a>
-          <a
+          </Link>
+          <Link
             href="/products"
             className="px-6 py-3 rounded-full bg-black text-white font-bold shadow hover:bg-pink-600 hover:text-white transition"
           >
             Shop Now
-          </a>
+          </Link>
         </div>
       </div>
 
       {/* Timeline/History Section */}
       <div className="w-[90%] mx-auto my-12">
-        <h2 className="text-3xl font-bold text-pink-600 mb-8 text-center">Our Journey</h2>
+        <h2 className="text-3xl font-bold text-pink-600 mb-8 text-center">
+          Our Journey
+        </h2>
         <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
           <div className="flex flex-col items-center">
             <div className="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mb-2">
