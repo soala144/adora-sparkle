@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
 
 // icons
@@ -66,7 +66,6 @@ const ProductPg = () => {
     ];
   const [shouldNavigate, setShouldNavigate] = useState<boolean>(false);
   const [index, setIndex] = useState<number | null>(null);
-  const [shouldNavigateBead, setShouldNavigateBead] = useState<boolean>(false);
   const swiperRef0 = useRef<any>(null);
   const swiperRef1 = useRef<any>(null);
   const swiperRef2 = useRef<any>(null);
@@ -90,9 +89,10 @@ const ProductPg = () => {
     if (action.toLowerCase() === "enter") {
       setIndex(i);
       return;
+    } else if (action.toLowerCase() === "leave") {
+      setIndex(null);
+      return;
     }
-    setIndex(i);
-    return;
   };
 
   return (
@@ -122,76 +122,76 @@ const ProductPg = () => {
                 ? swiperRef5
                 : swiperRef6;
             return (
-              <div
-                key={i}
-                className="mb-10"
-                onMouseEnter={() => handleMouseEvent("enter", i)}
-                onMouseLeave={() => handleMouseEvent("leave", i)}
-              >
+              <div key={i} className="mb-10">
                 <h2 className="font-semibold capitalize text-[#ff66d1] text-[30px] mb-5">
                   {item}
                 </h2>
-                <Swiper
-                  modules={[FreeMode]}
-                  spaceBetween={16}
-                  slidesPerView={2}
-                  grabCursor={true}
-                  freeMode={true}
-                  breakpoints={{
-                    640: { slidesPerView: 3 },
-                    1024: { slidesPerView: 4 },
-                    1100: { slidesPerView: 5 },
-                  }}
-                  ref={swiperRef}
-                  onSwiper={(swiper) => (swiperRef.current = swiper)}
+                <div
+                  onMouseEnter={() => handleMouseEvent("enter", i)}
+                  onMouseLeave={() => handleMouseEvent("leave", i)}
                 >
-                  {products.map((product, i) => (
-                    <SwiperSlide
-                      className="bg-white max-[410px]:mt-3 rounded-lg my-3 cursor-pointer flex flex-col items-center hover:shadow-lg transition"
-                      key={i}
-                    >
-                      <a
-                        href={`/products/${product.id}`}
-                        className="w-full flex flex-col items-center"
+                  <Swiper
+                    modules={[FreeMode]}
+                    spaceBetween={16}
+                    slidesPerView={2}
+                    grabCursor={true}
+                    freeMode={true}
+                    breakpoints={{
+                      640: { slidesPerView: 3 },
+                      1024: { slidesPerView: 4 },
+                      1100: { slidesPerView: 5 },
+                    }}
+                    ref={swiperRef}
+                    onSwiper={(swiper) => (swiperRef.current = swiper)}
+                  >
+                    {products.map((product, i) => (
+                      <SwiperSlide
+                        className="bg-white max-[410px]:mt-3 rounded-lg my-3 cursor-pointer flex flex-col items-center hover:shadow-lg transition"
+                        key={i}
                       >
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          className="w-30 h-20 block mx-auto object-cover rounded mb-2"
-                          width={130}
-                          height={80}
-                          priority
-                        />
-                        <h2 className="text-[20px] font-semibold w-[95%] text-center truncate mb-1 line-clamp-2">
-                          {product.name}
-                        </h2>
-                        <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
-                          {product.price}
-                        </p>
-                      </a>
-                      <button className="bg-[#ff66d1] text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
-                        <HiShoppingCart size={20} />
-                        <p>Add to Cart</p>
-                      </button>
-                    </SwiperSlide>
-                  ))}
-                  <button
-                    className={`shadow-lg absolute top-1/2 right-3 z-50 bg-white size-10 rounded-full cursor-pointer text-[#ff66d1] hover:text-white flex items-center justify-center hover:bg-[#ff66d1] transform -translate-y-0.5 ${
-                      i === index ? "" : "hidden"
-                    }`}
-                    onClick={() => swiperRef.current?.slideNext()}
-                  >
-                    <FaArrowRight />
-                  </button>
-                  <button
-                    className={`shadow-lg absolute top-1/2 overflow-hidden left-3 cursor-pointer text-[#ff66d1] hover:text-white z-50 bg-white size-10 rounded-full flex items-center justify-center hover:bg-[#ff66d1] transform -translate-y-0.5 ${
-                      i === index ? "" : "hidden"
-                    }`}
-                    onClick={() => swiperRef.current?.slidePrev()}
-                  >
-                    <FaArrowLeft />
-                  </button>
-                </Swiper>
+                        <a
+                          href={`/products/${product.id}`}
+                          className="w-full flex flex-col items-center"
+                        >
+                          <Image
+                            src={product.image}
+                            alt={product.name}
+                            className="w-30 h-20 block mx-auto object-cover rounded mb-2"
+                            width={130}
+                            height={80}
+                            priority
+                          />
+                          <h2 className="text-[20px] font-semibold w-[95%] text-center truncate mb-1 line-clamp-2">
+                            {product.name}
+                          </h2>
+                          <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
+                            {product.price}
+                          </p>
+                        </a>
+                        <button className="bg-[#ff66d1] text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
+                          <HiShoppingCart size={20} />
+                          <p>Add to Cart</p>
+                        </button>
+                      </SwiperSlide>
+                    ))}
+                    <button
+                      className={`shadow-lg absolute top-1/2 right-3 z-50 bg-white size-10 rounded-full cursor-pointer text-[#ff66d1] hover:text-white flex items-center justify-center hover:bg-[#ff66d1] transform -translate-y-0.5 ${
+                        i === index ? "" : "hidden"
+                      }`}
+                      onClick={() => swiperRef.current?.slideNext()}
+                    >
+                      <FaArrowRight />
+                    </button>
+                    <button
+                      className={`shadow-lg absolute top-1/2 overflow-hidden left-3 cursor-pointer text-[#ff66d1] hover:text-white z-50 bg-white size-10 rounded-full flex items-center justify-center hover:bg-[#ff66d1] transform -translate-y-0.5 ${
+                        i === index ? "" : "hidden"
+                      }`}
+                      onClick={() => swiperRef.current?.slidePrev()}
+                    >
+                      <FaArrowLeft />
+                    </button>
+                  </Swiper>
+                </div>
                 <button className="bg-[#ff66d1] rounded-md py-3 px-7 text-white hover:bg-pink-300 duration-500 transition-all cursor-pointer mx-auto block">
                   View more of <span className="capitalize">{item}</span>
                 </button>

@@ -1,11 +1,13 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import { HiShoppingCart } from "react-icons/hi";
+import Link from "next/link";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 const products: { id: number; name: string; image: string; price: string }[] = [
   {
@@ -59,13 +61,16 @@ const products: { id: number; name: string; image: string; price: string }[] = [
 ];
 
 const Product = () => {
+
   const swiperRef = useRef<any>(null);
+  const [hasHovered, setHasHovered] = useState<boolean>(false)
+
   return (
     <div className="py-10 px-4 max-w-6xl mx-auto">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
         Our Best Selling Items
       </h1>
-      <div className="hidden lg:block">
+      <div className="hidden lg:block relative" onMouseEnter={() => setHasHovered(true)} onMouseLeave={() => setHasHovered(false)}>
         <Swiper
           modules={[FreeMode]}
           spaceBetween={16}
@@ -77,8 +82,15 @@ const Product = () => {
             1024: { slidesPerView: 4 },
           }}
           ref={swiperRef}
-          className="mb-8 hidden lg:block"
+          onSwiper={swiper => swiperRef.current = swiper}
+          className="mb-8"
         >
+          <button onClick={() => swiperRef.current.slideNext()} className={`${hasHovered ? "" : "hidden"} cursor-pointer hover:bg-[#ff66d1] hover:text-white text-[#ff66d1] absolute rounded-full flex items-center justify-center size-12 shadow-lg top-1/2 transform z-50 -translate-y-1/2 bg-white right-5`}>
+            <FaArrowRight size={20} />
+          </button>
+          <button onClick={() => swiperRef.current.slidePrev()} className={`${hasHovered ? "" : "hidden"} cursor-pointer hover:bg-[#ff66d1] hover:text-white text-[#ff66d1] absolute rounded-full flex items-center justify-center size-12 shadow-lg top-1/2 bg-white transform z-50 -translate-y-1/2 left-5`}>
+            <FaArrowLeft size={20} />
+          </button>
           {products.map((product) => (
             <SwiperSlide key={product.id}>
               <div className="bg-white rounded-lg my-3 flex flex-col items-center hover:shadow-lg transition">
@@ -90,7 +102,7 @@ const Product = () => {
                   height={80}
                   priority
                 />
-                <h2 className="text-[20px] w-full truncate font-semibold mb-1 line-clamp-2">
+                <h2 className="text-[20px] text-center w-full truncate font-semibold mb-1 line-clamp-2">
                   {product.name}
                 </h2>
                 <p className="text-pink-600 font-bold text-[18px] text-sm mb-2">
@@ -117,7 +129,7 @@ const Product = () => {
                   height={80}
                   priority
                 />
-                <h2 className="text-[20px] w-full truncate font-semibold mb-1 line-clamp-2">
+                <h2 className="text-[20px] w-full text-center truncate font-semibold mb-1 line-clamp-2">
                   {product.name}
                 </h2>
                 <p className="text-pink-600 font-bold text-[18px] text-sm mb-2">
@@ -132,9 +144,9 @@ const Product = () => {
           }
       </div>
       <div className="flex justify-center">
-        <button className="bg-gray-900 hover:bg-gray-700 text-white px-8 py-3 rounded-full font-semibold text-lg transition">
+        <Link href="/products" className="bg-gray-900 hover:bg-gray-700 text-white px-8 py-3 rounded-full font-semibold text-lg transition">
           View All Products
-        </button>
+        </Link>
       </div>
     </div>
   );
