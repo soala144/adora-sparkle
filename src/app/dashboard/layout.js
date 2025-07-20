@@ -12,6 +12,7 @@ export default function RootLayout({ children }) {
 
           <div className="flex justify-between">
             <DashboardSidebar />
+
             {children}
           </div>
         </div>
