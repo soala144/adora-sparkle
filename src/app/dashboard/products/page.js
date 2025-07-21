@@ -12,6 +12,7 @@ const initialProducts = [
     stock: 12,
     price: "₦77,900.00",
     status: "Active",
+    imageUrl: "/images/waist-beads.jpg",
   },
   {
     id: "PRD-002",
@@ -19,6 +20,7 @@ const initialProducts = [
     stock: 5,
     price: "₦25,000.00",
     status: "Active",
+    imageUrl: "/images/bracelets.jpg",
   },
   {
     id: "PRD-003",
@@ -26,6 +28,7 @@ const initialProducts = [
     stock: 0,
     price: "₦18,500.00",
     status: "Out of Stock",
+    imageUrl: "/images/anklets.jpg",
   },
   {
     id: "PRD-004",
@@ -33,6 +36,7 @@ const initialProducts = [
     stock: 8,
     price: "₦10,000.00",
     status: "Active",
+    imageUrl: "/images/phone-charms.jpg",
   },
 ];
 
@@ -102,11 +106,12 @@ const ProductsPage = () => {
         <table className="w-full text-left border-separate border-spacing-y-2">
           <thead>
             <tr className="text-gray-700 text-sm uppercase">
-              <th className="py-2">Product ID</th>
-              <th className="py-2">Name</th>
-              <th className="py-2">Stock</th>
-              <th className="py-2">Price</th>
-              <th className="py-2">Status</th>
+            <th className="py-2">Image</th>
+            <th className="py-2">Product ID</th>
+            <th className="py-2">Name</th>
+            <th className="py-2">Stock</th>
+            <th className="py-2">Price</th>
+            <th className="py-2">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -115,6 +120,19 @@ const ProductsPage = () => {
                 key={product.id}
                 className="bg-gray-50 hover:bg-pink-50 transition rounded-lg"
               >
+                <td className="py-3 px-2">
+                  {product.imageUrl ? (
+                    <Image
+                      src={product.imageUrl}
+                      alt={product.name}
+                      width={48}
+                      height={48}
+                      className="rounded-lg object-cover h-12 w-12"
+                    />
+                  ) : (
+                    <span className="text-gray-400 text-xs">No image</span>
+                  )}
+                </td>
                 <td className="py-3 px-2 font-semibold text-pink-600">
                   {product.id}
                 </td>
@@ -166,6 +184,9 @@ const ProductsPage = () => {
                     src={form.imageUrl}
                     alt="Preview"
                     className="mt-2 h-24 w-24 object-cover rounded-lg border"
+                    width={192}
+                    height={192}
+                    priority
                   />
                 )}
               </label>
