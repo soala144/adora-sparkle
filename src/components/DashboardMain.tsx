@@ -21,7 +21,7 @@ const DashboardMain = () => {
   ];
 
   return (
-    <div className="lg:w-[76%] md:w-[60%] w-full">
+    <div className="lg:w-[70%] md:w-[53%] w-full">
       {/* Top summary cards */}
       <div className="grid lg:grid-cols-3 lg:h-35 h-auto gap-2 lg:gap-7">
         <div className="bg-[#ff66d1] relative text-white pl-7 h-35 lg:h-full pt-5 rounded-lg">

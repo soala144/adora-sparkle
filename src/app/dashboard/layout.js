@@ -7,13 +7,15 @@ export default function RootLayout({ children }) {
       <body
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="w-[90%] mx-auto max-w-[1440px]">
-          <DashboardHeader />
+        <div className="bg-[#F8F7FC]">
+          <div className="w-[90%]  mx-auto max-w-[1440px]">
+            <DashboardHeader />
 
-          <div className="flex justify-between">
-            <DashboardSidebar />
+            <div className="flex justify-between gap-14">
+              <DashboardSidebar />
 
-            {children}
+              {children}
+            </div>
           </div>
         </div>
       </body>

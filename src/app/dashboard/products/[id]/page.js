@@ -2,14 +2,14 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, useParams } from "next/navigation";
 
-const EditProductPage = ({ params }) => {
-  // In a real app, fetch product by ID from backend
-  // For now, get from query params or dummy
+const EditProductPage = () => {
+  const params = useParams(); // ✅ Use useParams instead of destructuring props
   const searchParams = useSearchParams();
   const router = useRouter();
-  const id = params?.id || searchParams.get("id");
+
+  const id = params?.id;
   const name = searchParams.get("name") || "";
   const stock = searchParams.get("stock") || "";
   const price = searchParams.get("price") || "";
@@ -24,8 +24,8 @@ const EditProductPage = ({ params }) => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    // In real app, update product in backend
-    alert("Product updated! (dummy)");
+    // Send PUT request to update product with `id`
+    alert(`Product with ID ${id} updated!`);
     router.back();
   };
 
@@ -34,9 +34,9 @@ const EditProductPage = ({ params }) => {
       <div className="bg-white rounded-xl p-8 w-full max-w-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-6 text-pink-600">Edit Product</h1>
         <form onSubmit={handleSave} className="flex flex-col gap-4">
-          {imageUrl && (
+          {form.imageUrl && (
             <Image
-              src={imageUrl}
+              src={form.imageUrl}
               alt={form.name}
               width={128}
               height={128}

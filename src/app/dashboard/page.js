@@ -7,7 +7,7 @@ import React from "react";
 
 const Dashboard = () => {
   return (
-    <div className="bg-[#F8F7FC] w-full">
+    <div className=" w-full">
       {/* <div className="w-[90%] mx-auto max-w-[1440px]">
         <DashboardHeader />
         <div className="flex justify-between ">
