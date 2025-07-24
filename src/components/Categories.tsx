@@ -29,11 +29,19 @@ const Categories = () => {
       <p className="text-center text-gray-600 mb-6">
         Swipe through our beautiful handcrafted bead collections.
       </p>
-      
+
       <div className="flex w-[95%] mx-auto overflow-scroll no-scroll-bar">
         {categories.map((cat) => (
           <div key={cat.category}>
-            <div className="flex flex-col items-center p-4">
+            <button
+              className="flex flex-col items-center p-4 focus:outline-none"
+              onClick={() => {
+                const categorySlug = cat.category
+                  .toLowerCase()
+                  .replace(/\s+/g, "-");
+                window.location.href = `/categories/${categorySlug}`;
+              }}
+            >
               <figure className="h-32 w-32 md:h-48 md:w-48 rounded-full overflow-hidden border-2 border-gray-300">
                 <Image
                   src={cat.image}
@@ -45,7 +53,7 @@ const Categories = () => {
                 />
               </figure>
               <p className="text-xl mt-2">{cat.category}</p>
-            </div>
+            </button>
           </div>
         ))}
       </div>

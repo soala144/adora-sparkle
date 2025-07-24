@@ -106,19 +106,32 @@ const ProductsPage = () => {
         <table className="w-full text-left border-separate border-spacing-y-2">
           <thead>
             <tr className="text-gray-700 text-sm uppercase">
-            <th className="py-2">Image</th>
-            <th className="py-2">Product ID</th>
-            <th className="py-2">Name</th>
-            <th className="py-2">Stock</th>
-            <th className="py-2">Price</th>
-            <th className="py-2">Status</th>
+              <th className="py-2">Image</th>
+              <th className="py-2">Product ID</th>
+              <th className="py-2">Name</th>
+              <th className="py-2">Stock</th>
+              <th className="py-2">Price</th>
+              <th className="py-2">Status</th>
             </tr>
           </thead>
           <tbody>
             {products.map((product) => (
               <tr
                 key={product.id}
-                className="bg-gray-50 hover:bg-pink-50 transition rounded-lg"
+                className="bg-gray-50 hover:bg-pink-50 transition rounded-lg cursor-pointer"
+                onClick={() => {
+                  const params = new URLSearchParams({
+                    id: product.id,
+                    name: product.name,
+                    stock: product.stock.toString(),
+                    price: product.price,
+                    imageUrl: product.imageUrl || "",
+                    status: product.status,
+                  });
+                  window.location.href = `/dashboard/products/${
+                    product.id
+                  }?${params.toString()}`;
+                }}
               >
                 <td className="py-3 px-2">
                   {product.imageUrl ? (
