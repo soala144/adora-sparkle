@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 
 import { useState } from "react";
+import { createProduct } from "../../../../lib/db/queries";
 
 const initialProducts = [
   {
@@ -71,22 +72,50 @@ const ProductsPage = () => {
     }
   };
 
-  const handleAddProduct = (e) => {
+  const handleAddProduct = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.stock || !form.price) return;
-    setProducts([
-      ...products,
-      {
-        id: `PRD-${products.length + 1}`,
+
+    if (!form.name || !form.stock || !form.price || !form.image) return;
+
+    try {
+      // 1. Upload image to Supabase Storage
+      const fileExt = form.image.name.split(".").pop();
+      const fileName = `${Date.now()}.${fileExt}`;
+      const filePath = `products/${fileName}`;
+
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("product-images")
+        .upload(filePath, form.image);
+
+      if (uploadError) {
+        alert("Image upload failed");
+        console.error(uploadError);
+        return;
+      }
+
+      const imageUrl = supabase.storage
+        .from("product-images")
+        .getPublicUrl(filePath).data.publicUrl;
+
+      // 2. Call your Drizzle createProduct function
+      const newProduct = await createP({
         name: form.name,
-        stock: Number(form.stock),
+        description: "", // Add a textarea for description if needed
         price: form.price,
-        status: Number(form.stock) > 0 ? "Active" : "Out of Stock",
-        imageUrl: form.imageUrl,
-      },
-    ]);
-    setForm({ name: "", stock: "", price: "", image: null, imageUrl: "" });
-    setShowModal(false);
+        sizes: [], // Add a size selector if needed
+        colors: [], // Add a color selector if needed
+        stock: Number(form.stock),
+        images: [imageUrl],
+      });
+
+      // 3. Update local state and reset form
+      setProducts([...products, { ...newProduct, imageUrl }]);
+      setForm({ name: "", stock: "", price: "", image: null, imageUrl: "" });
+      setShowModal(false);
+    } catch (error) {
+      console.error("Error creating product:", error);
+      alert("Something went wrong");
+    }
   };
 
   return (

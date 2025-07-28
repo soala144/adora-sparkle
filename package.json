@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.52.1",
     "@tanstack/react-query-devtools": "^5.83.0",
     "drizzle-kit": "^0.31.4",
     "drizzle-orm": "^0.44.3",

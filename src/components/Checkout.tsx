@@ -4,6 +4,18 @@ import { type CartItems } from "./Cart";
 import Image from "next/image";
 
 const Checkout = () => {
+  interface Delivery {
+    location: string;
+    price: number;
+  }
+  const deliveryPrices: Delivery[] = [
+    { location: "West", price: 6500 },
+    { location: "North", price: 6500 },
+    { location: "East", price: 5000 },
+    { location: "South-South", price: 4000 },
+    { location: "Within Ph", price: 3000 },
+    { location: "Outskirts Of Ph", price: 5000 },
+  ];
   const cartItems: CartItems[] = [
     {
       id: 0,
