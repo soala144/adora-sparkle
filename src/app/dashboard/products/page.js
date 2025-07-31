@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useState } from "react";
-import { createProduct } from "../../../../lib/db/queries";
+import { supabase } from "@/../lib/supabaseClient";
+import DashboardProducts from "@/components/DashboardProducts";
 
 const initialProducts = [
   {
@@ -41,11 +42,6 @@ const initialProducts = [
   },
 ];
 
-const statusColors = {
-  Active: "bg-green-100 text-green-700",
-  "Out of Stock": "bg-red-100 text-red-700",
-};
-
 const ProductsPage = () => {
   const [products, setProducts] = useState(initialProducts);
   const [showModal, setShowModal] = useState(false);
@@ -54,8 +50,35 @@ const ProductsPage = () => {
     stock: "",
     price: "",
     image: null,
+    description: "",
     imageUrl: "",
   });
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("/api/products");
+
+        const text = await res.text();
+        if (!res.ok) {
+          console.error("Server Error:", text);
+          return;
+        }
+
+        if (!text) {
+          console.warn("Empty response from /api/products");
+          return;
+        }
+
+        const data = JSON.parse(text); // parse only after checking
+        setProducts(data);
+      } catch (err) {
+        console.error("Fetch Error:", err);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -74,47 +97,59 @@ const ProductsPage = () => {
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
-
     if (!form.name || !form.stock || !form.price || !form.image) return;
 
     try {
-      // 1. Upload image to Supabase Storage
-      const fileExt = form.image.name.split(".").pop();
-      const fileName = `${Date.now()}.${fileExt}`;
-      const filePath = `products/${fileName}`;
+      const formData = new FormData();
+      formData.append("file", form.image);
 
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from("product-images")
-        .upload(filePath, form.image);
-
-      if (uploadError) {
-        alert("Image upload failed");
-        console.error(uploadError);
-        return;
-      }
-
-      const imageUrl = supabase.storage
-        .from("product-images")
-        .getPublicUrl(filePath).data.publicUrl;
-
-      // 2. Call your Drizzle createProduct function
-      const newProduct = await createP({
-        name: form.name,
-        description: "", // Add a textarea for description if needed
-        price: form.price,
-        sizes: [], // Add a size selector if needed
-        colors: [], // Add a color selector if needed
-        stock: Number(form.stock),
-        images: [imageUrl],
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
       });
 
-      // 3. Update local state and reset form
-      setProducts([...products, { ...newProduct, imageUrl }]);
-      setForm({ name: "", stock: "", price: "", image: null, imageUrl: "" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Upload failed");
+
+      const imageUrl = data.url;
+      setForm((prev) => ({ ...prev, imageUrl }));
+      alert("Uploaded to Cloudinary successfully!");
+
+      const response = await fetch("/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          description: form.description,
+          price: form.price,
+          sizes: [],
+          colors: [],
+          stock: Number(form.stock),
+          images: [imageUrl],
+          isHidden: false,
+        }),
+      });
+
+      const newProduct = await response.json();
+      if (!response.ok) throw new Error("Failed to create product");
+
+      setProducts((prev) => [...prev, newProduct]);
+
+      setForm({
+        name: "",
+        stock: "",
+        price: "",
+        image: null,
+        description: "",
+        imageUrl: "",
+      });
+
       setShowModal(false);
     } catch (error) {
-      console.error("Error creating product:", error);
-      alert("Something went wrong");
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again.");
     }
   };
 
@@ -143,56 +178,8 @@ const ProductsPage = () => {
               <th className="py-2">Status</th>
             </tr>
           </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr
-                key={product.id}
-                className="bg-gray-50 hover:bg-pink-50 transition rounded-lg cursor-pointer"
-                onClick={() => {
-                  const params = new URLSearchParams({
-                    id: product.id,
-                    name: product.name,
-                    stock: product.stock.toString(),
-                    price: product.price,
-                    imageUrl: product.imageUrl || "",
-                    status: product.status,
-                  });
-                  window.location.href = `/dashboard/products/${
-                    product.id
-                  }?${params.toString()}`;
-                }}
-              >
-                <td className="py-3 px-2">
-                  {product.imageUrl ? (
-                    <Image
-                      src={product.imageUrl}
-                      alt={product.name}
-                      width={48}
-                      height={48}
-                      className="rounded-lg object-cover h-12 w-12"
-                    />
-                  ) : (
-                    <span className="text-gray-400 text-xs">No image</span>
-                  )}
-                </td>
-                <td className="py-3 px-2 font-semibold text-pink-600">
-                  {product.id}
-                </td>
-                <td className="py-3 px-2">{product.name}</td>
-                <td className="py-3 px-2">{product.stock}</td>
-                <td className="py-3 px-2 font-bold">{product.price}</td>
-                <td className="py-3 px-2">
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-bold ${
-                      statusColors[product.status]
-                    }`}
-                  >
-                    {product.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+
+          <DashboardProducts products={products} />
         </table>
       </div>
 
@@ -251,6 +238,14 @@ const ProductsPage = () => {
                 required
                 min="0"
               />
+              <textarea
+                name="description"
+                value={form.description}
+                onChange={handleInput}
+                className="border rounded-lg px-4 py-6"
+                placeholder="Describe the product..."
+                required
+              ></textarea>
               <input
                 type="text"
                 name="price"
