@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    const uploadResult = await new Promise((resolve, reject) => {
+    const uploadResult: any = await new Promise((resolve, reject) => {
       cloudinary.uploader
         .upload_stream({ folder: "products" }, (err, result) => {
           if (err) return reject(err);

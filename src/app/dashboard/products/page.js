@@ -96,9 +96,6 @@ const ProductsPage = () => {
   };
 
   const handleAddProduct = async (e) => {
-    e.preventDefault();
-    if (!form.name || !form.stock || !form.price || !form.image) return;
-
     try {
       const formData = new FormData();
       formData.append("file", form.image);
@@ -114,37 +111,6 @@ const ProductsPage = () => {
       const imageUrl = data.url;
       setForm((prev) => ({ ...prev, imageUrl }));
       alert("Uploaded to Cloudinary successfully!");
-
-      const response = await fetch("/api/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: form.name,
-          description: form.description,
-          price: form.price,
-          sizes: [],
-          colors: [],
-          stock: Number(form.stock),
-          images: [imageUrl],
-          isHidden: false,
-        }),
-      });
-
-      const newProduct = await response.json();
-      if (!response.ok) throw new Error("Failed to create product");
-
-      setProducts((prev) => [...prev, newProduct]);
-
-      setForm({
-        name: "",
-        stock: "",
-        price: "",
-        image: null,
-        description: "",
-        imageUrl: "",
-      });
 
       setShowModal(false);
     } catch (error) {
