@@ -13,6 +13,8 @@ export async function POST(req: Request) {
         description: body.description,
         price: body.price,
         inStock: body.inStock, // <- Make sure this is sent in the request
+        category: body.category,
+        images: body.images,
       },
     });
 

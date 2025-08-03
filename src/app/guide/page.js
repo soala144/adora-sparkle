@@ -1,37 +1,4 @@
-export const metadata = {
-  title: "Order Guide | Adora Sparkles",
-  description:
-    "Step-by-step guide to ordering your favorite handcrafted jewelry and accessories from Adora Sparkles. Simple, secure, and fast!",
-  keywords:
-    "order guide, how to order, shopping steps, Adora Sparkles, Nigeria, beads, jewelry, accessories, checkout, delivery",
-  openGraph: {
-    title: "Order Guide | Adora Sparkles",
-    description:
-      "Step-by-step guide to ordering your favorite handcrafted jewelry and accessories from Adora Sparkles. Simple, secure, and fast!",
-    url: "https://adorasparkles.com/guide",
-    siteName: "Adora Sparkles",
-    images: [
-      {
-        url: "/images/logo.jpg",
-        width: 400,
-        height: 400,
-        alt: "Adora Sparkles Logo",
-      },
-    ],
-    locale: "en_NG",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Order Guide | Adora Sparkles",
-    description:
-      "Step-by-step guide to ordering your favorite handcrafted jewelry and accessories from Adora Sparkles. Simple, secure, and fast!",
-    images: ["/images/logo.jpg"],
-  },
-  alternates: {
-    canonical: "https://adorasparkles.com/guide",
-  },
-};
+"use client";
 
 import React from "react";
 import {
@@ -71,7 +38,7 @@ const steps = [
 const page = () => {
   return (
     <section className="py-16 mt-4 px-6 md:px-20 bg-gray-50 text-gray-800">
-      <div className="max-w-5xl pt-10 mx-auto text-center">
+      <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           How to Order from Adora Sparkles
         </h2>

@@ -15,10 +15,9 @@ const Footer = () => {
             <Image
               src="/images/logo.jpg"
               alt="Adora Sparkles"
-              className="w-full h-full object-cover"
               width={56}
               height={56}
-              priority
+              className="w-full h-full object-cover"
             />
           </figure>
           <p className="text-sm text-gray-400">
@@ -54,11 +53,11 @@ const Footer = () => {
           <h4 className="text-lg font-semibold mb-4">Get in Touch</h4>
           <p className="text-sm text-gray-400 mb-2">adorasparkles@gmail.com</p>
           <p className="text-sm text-gray-400 mb-2">
-            WhatsApp: +234-814-821-9109
+            WhatsApp: +234-812-XXX-XXXX
           </p>
           <div className="flex gap-4 mt-4">
             <a
-              href="https://www.instagram.com/adora.sparkles_?igsh=MTNiaGxieDBiZTZ2ZA%3D%3D&utm_source=qr"
+              href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -72,7 +71,7 @@ const Footer = () => {
               <FaFacebookF size={20} className="hover:text-pink-500" />
             </a>
             <a
-              href="https://www.tiktok.com/@adorasparkles_?_t=ZM-8y69xgGNcLF&_r=1"
+              href="https://tiktok.com"
               target="_blank"
               rel="noopener noreferrer"
             >

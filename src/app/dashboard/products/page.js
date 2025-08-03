@@ -1,11 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import React, { useEffect } from "react";
-
-import { useState } from "react";
-import { supabase } from "@/../lib/supabaseClient";
 import DashboardProducts from "@/components/DashboardProducts";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Loader from "@/components/Loader";
 
 const initialProducts = [
   {
@@ -44,6 +42,7 @@ const initialProducts = [
 
 const ProductsPage = () => {
   const [products, setProducts] = useState(initialProducts);
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -56,27 +55,27 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true);
       try {
         const res = await fetch("/api/products");
-
         const text = await res.text();
         if (!res.ok) {
           console.error("Server Error:", text);
+          setLoading(false);
           return;
         }
-
         if (!text) {
           console.warn("Empty response from /api/products");
+          setLoading(false);
           return;
         }
-
-        const data = JSON.parse(text); // parse only after checking
+        const data = JSON.parse(text);
         setProducts(data);
       } catch (err) {
         console.error("Fetch Error:", err);
       }
+      setLoading(false);
     };
-
     fetchProducts();
   }, []);
 
@@ -96,23 +95,52 @@ const ProductsPage = () => {
   };
 
   const handleAddProduct = async (e) => {
+    e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("file", form.image);
+      // 1. Upload image first
+      let imageUrl = form.imageUrl;
+      if (form.image) {
+        const formData = new FormData();
+        formData.append("file", form.image);
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Upload failed");
+        imageUrl = data.url;
+      }
 
-      const res = await fetch("/api/upload", {
+      // 2. Send product data to backend
+      const productData = {
+        name: form.name,
+        description: form.description,
+        price: Number(form.price),
+        images: imageUrl, // send as 'images' string to match backend
+        inStock: Number(form.stock),
+        category: form.category,
+      };
+      const res2 = await fetch("/api/products", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(productData),
       });
+      const newProduct = await res2.json();
+      if (!res2.ok)
+        throw new Error(newProduct.error || "Product creation failed");
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Upload failed");
-
-      const imageUrl = data.url;
-      setForm((prev) => ({ ...prev, imageUrl }));
-      alert("Uploaded to Cloudinary successfully!");
-
+      setProducts((prev) => [...prev, newProduct]);
       setShowModal(false);
+      setForm({
+        name: "",
+        stock: "",
+        price: "",
+        image: null,
+        description: "",
+        imageUrl: "",
+        category: "waistbeads",
+      });
+      alert("Product added successfully!");
     } catch (error) {
       console.error("Error:", error);
       alert("Something went wrong. Please try again.");
@@ -121,32 +149,51 @@ const ProductsPage = () => {
 
   return (
     <div className="bg-[#F8F7FC] w-full min-h-screen p-8">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex  items-center justify-between mb-8">
         <h1 className="text-3xl font-extrabold text-pink-600 tracking-tight">
           Products
         </h1>
         <button
-          className="bg-pink-600 text-white px-6 py-2 rounded-full font-bold shadow hover:bg-pink-700 transition"
+          className="bg-pink-600 px-2 py-2 text-white md:px-6 md:py-2 rounded-full md:font-bold shadow hover:bg-pink-700 transition"
           onClick={() => setShowModal(true)}
         >
           + Add Product
         </button>
       </div>
-      <div className="bg-white rounded-xl p-8 shadow-lg">
-        <table className="w-full text-left border-separate border-spacing-y-2">
-          <thead>
-            <tr className="text-gray-700 text-sm uppercase">
-              <th className="py-2">Image</th>
-              <th className="py-2">Product ID</th>
-              <th className="py-2">Name</th>
-              <th className="py-2">Stock</th>
-              <th className="py-2">Price</th>
-              <th className="py-2">Status</th>
-            </tr>
-          </thead>
-
-          <DashboardProducts products={products} />
-        </table>
+      <div className="bg-white rounded-xl p-2 md:p-8 shadow-lg overflow-x-auto">
+        {loading ? (
+          <Loader />
+        ) : (
+          <table className="min-w-full table-fixed text-left border-separate border-spacing-y-2 border-spacing-x-0 text-xs md:text-sm">
+            <colgroup>
+              <col className="w-16" />
+              <col className="w-32" />
+              <col className="w-20" />
+              <col className="w-24" />
+              <col className="w-28" />
+            </colgroup>
+            <thead>
+              <tr className="text-gray-700 text-xs md:text-sm uppercase">
+                <th className="py-3 px-2 md:px-4 text-center whitespace-nowrap">
+                  Image
+                </th>
+                <th className="py-3 px-2 md:px-4 text-left whitespace-nowrap">
+                  Name
+                </th>
+                <th className="py-3 px-2 md:px-4 text-center whitespace-nowrap">
+                  Stock
+                </th>
+                <th className="py-3 px-2 md:px-4 text-right whitespace-nowrap">
+                  Price
+                </th>
+                <th className="py-3 px-2 md:px-4 text-center whitespace-nowrap">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <DashboardProducts products={products} />
+          </table>
+        )}
       </div>
 
       {/* Modal for adding product */}
@@ -164,6 +211,26 @@ const ProductsPage = () => {
               Add New Product
             </h2>
             <form onSubmit={handleAddProduct} className="flex flex-col gap-4">
+              <label className="block">
+                <span className="text-gray-700 text-sm mb-1 block">
+                  Category
+                </span>
+                <select
+                  name="category"
+                  value={form.category || "waistbeads"}
+                  onChange={handleInput}
+                  className="border rounded-lg px-4 py-2 focus:outline-pink-600"
+                  required
+                >
+                  <option value="waistbeads">Waistbeads</option>
+                  <option value="bracelets">Bracelets</option>
+                  <option value="anklets">Anklets</option>
+                  <option value="phonecharms">Phone Charms</option>
+                  <option value="thighbeads">Thigh Beads</option>
+                  <option value="jewelries">Jewelries</option>
+                  <option value="giftbox">Gift Box</option>
+                </select>
+              </label>
               <label className="block">
                 <span className="text-gray-700 text-sm mb-1 block">
                   Product Image

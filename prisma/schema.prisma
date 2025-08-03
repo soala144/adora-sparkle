@@ -46,10 +46,11 @@ model Product {
   name        String
   description String
   price       Float
-  images      String[]   // array of URLs
+  images      String?   // array of URLs
   sizes       String[]   // e.g., ["S", "M", "L"]
   colors      String[]   // e.g., ["Red", "Blue"]
   inStock     Int
+  category    String
   isActive    Boolean    @default(true)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt

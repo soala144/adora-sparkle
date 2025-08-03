@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper/modules";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { Navigation, Pagination, FreeMode } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -22,7 +21,6 @@ const categories = [
 ];
 
 const Categories = () => {
-  const swiperRef = useRef<any>(null);
   return (
     <div className="py-8 px-4 bg-gray-50">
       <h2 className="text-3xl font-bold text-center mb-4">Shop by Category</h2>
@@ -30,33 +28,43 @@ const Categories = () => {
         Swipe through our beautiful handcrafted bead collections.
       </p>
 
-      <div className="flex w-[95%] mx-auto overflow-scroll no-scroll-bar">
+      <Swiper
+        modules={[Navigation, Pagination, FreeMode]}
+        spaceBetween={20}
+        slidesPerView={2}
+        grabCursor={true}
+        freeMode={true}
+        navigation
+        pagination={{ clickable: true }}
+        breakpoints={{
+          640: {
+            slidesPerView: 3,
+          },
+          768: {
+            slidesPerView: 4,
+          },
+          1024: {
+            slidesPerView: 5,
+          },
+        }}
+      >
         {categories.map((cat) => (
-          <div key={cat.category}>
-            <button
-              className="flex flex-col items-center p-4 focus:outline-none"
-              onClick={() => {
-                const categorySlug = cat.category
-                  .toLowerCase()
-                  .replace(/\s+/g, "-");
-                window.location.href = `/categories/${categorySlug}`;
-              }}
-            >
+          <SwiperSlide key={cat.category}>
+            <div className="flex flex-col items-center p-4">
               <figure className="h-32 w-32 md:h-48 md:w-48 rounded-full overflow-hidden border-2 border-gray-300">
                 <Image
                   src={cat.image}
                   alt={cat.category}
-                  className="h-full w-full object-cover"
                   width={192}
                   height={192}
-                  priority
+                  className="h-full w-full object-cover"
                 />
               </figure>
               <p className="text-xl mt-2">{cat.category}</p>
-            </button>
-          </div>
+            </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   );
 };

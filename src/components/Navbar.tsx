@@ -13,12 +13,7 @@ import { FaNewspaper } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-interface NavItem {
-  name: string;
-  href: string;
-}
-
-const navItems: NavItem[] = [
+const navItems = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
   { name: "About", href: "/about" },
@@ -26,34 +21,33 @@ const navItems: NavItem[] = [
   { name: "Order Guide", href: "/guide" },
 ];
 
-const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [showSearch, setShowSearch] = useState<boolean>(false);
-  const [searchTerm, setSearchTerm] = useState<string>("");
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const pathname = usePathname();
 
-  const toggleMenu = (): void => setIsOpen(!isOpen);
-  const closeMenu = (): void => setIsOpen(false);
-  const toggleSearch = (): void => setShowSearch(!showSearch);
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
+  const toggleSearch = () => setShowSearch(!showSearch);
 
   return (
     <>
-      <nav className="z-50 fixed top-0 w-screen bg-gray-200 ">
-        <div className="flex items-center justify-between w-[90%] mx-auto h-16 text-black">
+      <nav className="z-50 fixed top-0 w-full bg-gray-200 border-b border-gray-300">
+        <div className="flex items-center justify-between max-w-7xl mx-auto px-4 md:px-8 h-16 text-black">
           {/* Logo */}
           <figure className="h-14 w-14 rounded-full overflow-hidden border-2 border-gray-300">
             <Image
               src="/images/logo.jpg"
               alt="Logo"
-              className="h-full w-full object-cover"
               width={56}
               height={56}
-              priority
+              className="h-full w-full object-cover"
             />
           </figure>
 
           {/* Desktop Nav Links */}
-          <ul className="hidden md:flex gap-6">
+          <ul className="hidden md:flex gap-8">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
@@ -71,22 +65,22 @@ const Navbar: React.FC = () => {
           </ul>
 
           {/* Right Side: Search, Cart, Hamburger */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <IoSearchOutline
               size={27}
               onClick={toggleSearch}
               className="cursor-pointer"
             />
             {/* Cart Icon */}
-            <Link href="/cart" className="text-xl pr-2 relative">
-              <div className="absolute top-0 right-[3px] bg-[#FF66D1] text-sm rounded-full size-4 text-white flex items-center justify-center">
-                <p>0</p>
-              </div>
+            <Link href="/cart" className="relative">
               <IoCartOutline size={30} />
+              <div className="absolute -top-2 -right-2 bg-[#FF66D1] text-xs rounded-full w-5 h-5 text-white flex items-center justify-center shadow">
+                <span>0</span>
+              </div>
             </Link>
 
             {/* Hamburger Menu */}
-            <button onClick={toggleMenu} className="md:hidden text-2xl">
+            <button onClick={toggleMenu} className="md:hidden text-2xl ml-2">
               {isOpen ? <IoClose size={30} /> : <IoMenuOutline size={30} />}
             </button>
           </div>
@@ -96,20 +90,19 @@ const Navbar: React.FC = () => {
             <div className="fixed inset-0 bg-[#1F2937] bg-opacity-40 z-40 flex justify-start">
               <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
                 <div
-                  className="bg-gray-200 h-full p-6 flex flex-col justify-between animate-slide-in"
-                  style={{ width: "85vw", maxWidth: "500px" }}
+                  className="bg-gray-200 h-full p-6 flex flex-col justify-between animate-slide-in shadow-lg"
+                  style={{ width: "85vw", maxWidth: "400px" }}
                 >
                   <div>
                     {/* Mobile Logo Row */}
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="flex justify-between items-center mb-8">
                       <figure className="h-14 w-14 rounded-full overflow-hidden border-2 border-gray-300">
                         <Image
                           src="/images/logo.jpg"
                           alt="Logo"
-                          className="h-full w-full object-cover"
                           width={56}
                           height={56}
-                          priority
+                          className="h-full w-full object-cover"
                         />
                       </figure>
                       <IoClose
@@ -120,7 +113,7 @@ const Navbar: React.FC = () => {
                     </div>
 
                     {/* Menu Items */}
-                    <ul className="flex flex-col gap-6 text-lg">
+                    <ul className="flex flex-col gap-6 text-lg mt-2">
                       {navItems.map((item) => (
                         <li key={item.href}>
                           <Link
@@ -141,7 +134,7 @@ const Navbar: React.FC = () => {
 
                   {/* Newsletter Button */}
                   <button
-                    className="mt-10 inline-flex items-center justify-center gap-2 bg-gradient-to-br from-[#9D1D20] via-[#B22222] to-[#80171A] text-white px-6 py-3 rounded-full shadow hover:bg-[#80171a] transition"
+                    className="mt-8 inline-flex items-center justify-center gap-2 bg-gradient-to-br from-[#9D1D20] via-[#B22222] to-[#80171A] text-white px-6 py-3 rounded-full shadow hover:bg-[#80171a] transition"
                     onClick={() => setIsOpen(false)}
                   >
                     NewsLetter <FaNewspaper />
@@ -155,9 +148,9 @@ const Navbar: React.FC = () => {
 
       {showSearch && (
         <div className="fixed inset-0 bg-white z-[9999] overflow-y-auto animate-slide-in">
-          <div className="max-w-4xl mx-auto px-4 py-6">
+          <div className="max-w-4xl mx-auto px-4 py-8">
             {/* Top bar: input + close */}
-            <div className="flex items-center justify-between border-b border-gray-400 pb-2 mb-4">
+            <div className="flex items-center justify-between border-b border-gray-400 pb-3 mb-6">
               <input
                 type="text"
                 value={searchTerm}
@@ -183,7 +176,7 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Tabs */}
-            <div className="flex gap-6 text-gray-400 font-medium mb-6 text-lg">
+            <div className="flex gap-8 text-gray-400 font-medium mb-8 text-lg">
               <button className="text-black border-b-2 border-black pb-1">
                 Products
               </button>
@@ -191,16 +184,15 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Example Search Results */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-8">
               {[...Array(2)].map((_, i) => (
                 <div key={i} className="flex gap-4 items-center">
                   <Image
                     src="/images/waist-beads.jpg"
                     alt="Bead"
-                    className="w-20 h-20 object-cover rounded"
                     width={80}
                     height={80}
-                    priority
+                    className="w-20 h-20 object-cover rounded"
                   />
                   <div>
                     <h3 className="font-semibold text-lg">

@@ -14,9 +14,9 @@
     "isolatedModules": true,
     "jsx": "preserve", // 👈 ENABLES JSX SUPPORT
     "incremental": true,
-    "baseUrl": ".", // Optional, for absolute imports
+    "baseUrl": "src", // Set to 'src' for correct alias resolution
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./*"],
       "@components/*": ["components/*"],
       "@utils/*": ["utils/*"]
     },
@@ -26,12 +26,6 @@
       }
     ]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "src/app/signup/page.js"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
