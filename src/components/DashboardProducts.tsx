@@ -33,26 +33,7 @@ const DashboardProducts = ({ products }: { products: ProductType[] }) => {
       {products.map((product: ProductType) => (
         <tr
           key={product.id}
-          className="bg-gray-50 hover:bg-pink-50 transition rounded-lg cursor-pointer"
-          onClick={() => {
-            const params = new URLSearchParams({
-              id: product.id,
-              name: product.name,
-              stock: (product.inStock !== undefined
-                ? product.inStock
-                : (product.stock ?? 0)
-              ).toString(),
-              price:
-                typeof product.price === "number"
-                  ? product.price.toString()
-                  : product.price,
-              imageUrl: product.images ?? product.imageUrl ?? "",
-              status:
-                product.status ??
-                ((product.inStock ?? 0) > 0 ? "Active" : "Out of Stock"),
-            });
-            window.location.href = `/dashboard/products/${product.id}?${params.toString()}`;
-          }}
+          className="bg-gray-50 hover:bg-pink-50 transition rounded-lg"
         >
           <td className="py-3 px-2 w-16 min-w-[56px] text-center align-middle">
             {(product.images ?? product.imageUrl) ? (
@@ -92,6 +73,14 @@ const DashboardProducts = ({ products }: { products: ProductType[] }) => {
               {product.status ??
                 ((product.inStock ?? 0) > 0 ? "Active" : "Out of Stock")}
             </span>
+          </td>
+          <td className="py-3 px-2 align-middle text-center min-w-[100px]">
+            <a
+              href={`/dashboard/products/${product.id}`}
+              className="inline-block px-4 py-2 bg-[#9D1D20] text-white rounded-full hover:bg-[#80171A] transition"
+            >
+              View More
+            </a>
           </td>
         </tr>
       ))}

@@ -209,6 +209,13 @@ const Navbars = () => {
                       {i === 0 ? "Kouya" : "Dioula"} – Single Strand Waist Bead
                     </h3>
                     <p className="text-gray-700 font-medium">₦77,900.00</p>
+                    <Link
+                      href={`/products/${i === 0 ? "kouya-id" : "dioula-id"}`}
+                      className="inline-block mt-2 px-4 py-2 bg-[#9D1D20] text-white rounded-full hover:bg-[#80171A] transition"
+                      onClick={() => setShowSearch(false)}
+                    >
+                      View More
+                    </Link>
                   </div>
                 </div>
               ))}

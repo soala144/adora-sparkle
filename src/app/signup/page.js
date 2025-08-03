@@ -1,5 +1,5 @@
 "use client";
-import { signUp } from "lib/auth";
+// import { signUp } from "lib/auth";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -11,9 +11,9 @@ const page = () => {
 
   //  const handleSubmit = async (e: React.FormEvent) => {
   //   e.preventDefault()
-  //   const { error } = await signUp(email, password)
-  //   if (error) return setMessage(error.message)
-  //   setMessage("Check your email to confirm your account.")
+  //   // const { error } = await signUp(email, password)
+  //   // if (error) return setMessage(error.message)
+  //   // setMessage("Check your email to confirm your account.")
   // }
   return (
     <div className="flex mt-15 max-[1121px]:mx-auto w-[90.6vw] items-center justify-between mb-[140px]">

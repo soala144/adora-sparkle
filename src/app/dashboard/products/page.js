@@ -5,43 +5,8 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Loader from "@/components/Loader";
 
-const initialProducts = [
-  {
-    id: "PRD-001",
-    name: "Kouya Waist Bead",
-    stock: 12,
-    price: "₦77,900.00",
-    status: "Active",
-    imageUrl: "/images/waist-beads.jpg",
-  },
-  {
-    id: "PRD-002",
-    name: "Classic Bracelet",
-    stock: 5,
-    price: "₦25,000.00",
-    status: "Active",
-    imageUrl: "/images/bracelets.jpg",
-  },
-  {
-    id: "PRD-003",
-    name: "Elegant Anklet",
-    stock: 0,
-    price: "₦18,500.00",
-    status: "Out of Stock",
-    imageUrl: "/images/anklets.jpg",
-  },
-  {
-    id: "PRD-004",
-    name: "Phone Charm",
-    stock: 8,
-    price: "₦10,000.00",
-    status: "Active",
-    imageUrl: "/images/phone-charms.jpg",
-  },
-];
-
 const ProductsPage = () => {
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({
