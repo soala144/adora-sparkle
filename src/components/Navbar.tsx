@@ -12,6 +12,7 @@ import {
 import { FaNewspaper } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useCart } from "../context/CartContext";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -26,6 +27,7 @@ const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const pathname = usePathname();
+  const { cart } = useCart();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -75,7 +77,9 @@ const Navbar = () => {
             <Link href="/cart" className="relative">
               <IoCartOutline size={30} />
               <div className="absolute -top-2 -right-2 bg-[#FF66D1] text-xs rounded-full w-5 h-5 text-white flex items-center justify-center shadow">
-                <span>0</span>
+                <span>
+                  {cart.reduce((sum, item) => sum + item.quantity, 0)}
+                </span>
               </div>
             </Link>
 

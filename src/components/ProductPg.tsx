@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import { useCart } from "../context/CartContext";
 import { HiShoppingCart } from "react-icons/hi";
 
 // icons
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-
+import { products } from "../data/product";
 // Swiper packages
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
@@ -13,57 +14,8 @@ import "swiper/css";
 import "swiper/css/free-mode";
 
 const ProductPg = () => {
-  const products: { id: number; name: string; image: string; price: string }[] =
-    [
-      {
-        id: 1,
-        name: "Kouya Waist Bead",
-        image: "/images/waist-beads.jpg",
-        price: "₦77,900.00",
-      },
-      {
-        id: 2,
-        name: "Classic Bracelet",
-        image: "/images/bracelets.jpg",
-        price: "₦25,000.00",
-      },
-      {
-        id: 3,
-        name: "Elegant Anklet",
-        image: "/images/anklets.jpg",
-        price: "₦18,500.00",
-      },
-      {
-        id: 4,
-        name: "Phone Charm",
-        image: "/images/phone-charms.jpg",
-        price: "₦10,000.00",
-      },
-      {
-        id: 5,
-        name: "Gift Box",
-        image: "/images/gift-box.jpg",
-        price: "₦5,000.00",
-      },
-      {
-        id: 6,
-        name: "Thigh Beads",
-        image: "/images/thigh-beads.jpg",
-        price: "₦22,000.00",
-      },
-      {
-        id: 7,
-        name: "Jewelry Beads",
-        image: "/images/jewelry-beads.jpg",
-        price: "₦30,000.00",
-      },
-      {
-        id: 8,
-        name: "Product Special",
-        image: "/images/product.jpg",
-        price: "₦50,000.00",
-      },
-    ];
+  const { addToCart } = useCart();
+
   const [shouldNavigate, setShouldNavigate] = useState<boolean>(false);
   const [index, setIndex] = useState<number | null>(null);
   const [shouldNavigateBead, setShouldNavigateBead] = useState<boolean>(false);
@@ -164,7 +116,20 @@ const ProductPg = () => {
                       <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
                         {product.price}
                       </p>
-                      <button className="bg-[#ff66d1] text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
+                      <button
+                        className="bg-[#ff66d1] text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all"
+                        onClick={() =>
+                          addToCart({
+                            id: product.id,
+                            name: product.name,
+                            price: Number(product.price.replace(/[^\d.]/g, "")),
+                            img: product.image,
+                            quantity: 1,
+                            color: product.color,
+                            size: product.size,
+                          })
+                        }
+                      >
                         <HiShoppingCart size={20} />
                         <p>Add to Cart</p>
                       </button>
@@ -221,7 +186,20 @@ const ProductPg = () => {
                   <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
                     {product.price}
                   </p>
-                  <button className="bg-[#ff66d1] min-[350px]:text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all">
+                  <button
+                    className="bg-[#ff66d1] min-[350px]:text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all"
+                    onClick={() =>
+                      addToCart({
+                        id: product.id,
+                        name: product.name,
+                        price: Number(product.price.replace(/[^\d.]/g, "")),
+                        img: product.image,
+                        size: product.size,
+                        color: product.color,
+                        quantity: 1,
+                      })
+                    }
+                  >
                     <HiShoppingCart size={20} />
                     <p>Add to Cart</p>
                   </button>

@@ -7,11 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  ADMIN
-}
-
 enum OrderStatus {
   PENDING
   PAID
@@ -28,70 +23,48 @@ enum DeliveryZone {
   WEST
 }
 
-model User {
-  id            String   @id @default(uuid())
-  email         String   @unique
-  password      String
-  name          String?
-  role          Role     @default(USER)
-  orders        Order[]
-  cartItems     CartItem[]
-  subscribedAt  DateTime?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-}
-
 model Product {
-  id          String     @id @default(uuid())
+  id          String      @id @default(uuid())
   name        String
   description String
   price       Float
-  images      String?   // array of URLs
-  sizes       String[]   // e.g., ["S", "M", "L"]
-  colors      String[]   // e.g., ["Red", "Blue"]
+  images      String?     // comma-separated URLs (or make this String[])
+  sizes       String[]    // e.g., ["S", "M", "L"]
+  colors      String[]    // e.g., ["Red", "Blue"]
   inStock     Int
   category    String
-  isActive    Boolean    @default(true)
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  cartItems   CartItem[]
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   orderItems  OrderItem[]
 }
 
-model CartItem {
+model Order {
+  id            String        @id @default(uuid())
+  items         OrderItem[]
+  fullName      String
+  email         String
+  phone         String
+  street        String
+  city          String
+  deliveryZone  DeliveryZone
+  totalAmount   Float
+  status        OrderStatus   @default(PENDING)
+  emailSent     Boolean       @default(false)
+  paymentId     String?       // Stripe payment ID or any other
+  trackingInfo  String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model OrderItem {
   id        String   @id @default(uuid())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   String
   product   Product  @relation(fields: [productId], references: [id])
   productId String
   quantity  Int
   size      String
   color     String
-  createdAt DateTime @default(now())
-}
-
-model Order {
-  id             String       @id @default(uuid())
-  user           User         @relation(fields: [userId], references: [id])
-  userId         String
-  items          OrderItem[]
-  totalAmount    Float
-  deliveryZone   DeliveryZone
-  status         OrderStatus  @default(PENDING)
-  emailSent      Boolean      @default(false)
-  paymentId      String?      // Stripe payment ID
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-}
-
-model OrderItem {
-  id         String   @id @default(uuid())
-  order      Order    @relation(fields: [orderId], references: [id])
-  orderId    String
-  product    Product  @relation(fields: [productId], references: [id])
-  productId  String
-  quantity   Int
-  size       String
-  color      String
-  price      Float
+  price     Float
 }

@@ -96,7 +96,8 @@ const ProductDetailsPage = () => {
           )}
           <div className="flex-1 w-full">
             <div className="text-xl font-semibold text-gray-800 mb-2">
-              Price: <span className="font-mono">
+              Price:{" "}
+              <span className="font-mono">
                 {typeof product.price === "number"
                   ? `₦${product.price.toLocaleString()}`
                   : product.price && !isNaN(Number(product.price))
@@ -105,7 +106,7 @@ const ProductDetailsPage = () => {
               </span>
             </div>
             <div className="text-lg text-gray-700 mb-2">
-              Stock: {" "}
+              Stock:{" "}
               <span className="font-bold">
                 {product.inStock ?? product.stock ?? ""}
               </span>

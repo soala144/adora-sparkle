@@ -1,7 +1,9 @@
+"use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { CartProvider } from "../context/CartContext";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -13,23 +15,16 @@ import Footer from "@/components/Footer";
 //   subsets: ["latin"],
 // });
 
-export const metadata = {
-  title: "Adora sparkles",
-  description:
-    "At Adora Sparkles, we create beautiful and unique jewelry that sparkles with elegance and charm.",
-  icons: {
-    icon: "/images/logo.jpg",
-  },
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <CartProvider>
+          <Navbar />
+          {children}
+        </CartProvider>
         <Footer />
       </body>
     </html>
