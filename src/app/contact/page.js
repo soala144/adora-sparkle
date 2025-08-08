@@ -1,7 +1,5 @@
-import ContactUs from "../../components/Contactus";
-
 import React from "react";
-
+import ContactUs from "../../components/ContactUs";
 export const metadata = {
   title: "Contact | Adora Sparkles",
   description:
