@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { HiShoppingCart } from "react-icons/hi";
+import { useRouter } from "next/navigation";
 
 // icons
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
@@ -27,6 +28,7 @@ const ProductPg = () => {
   const swiperRef5 = useRef<any>(null);
   const swiperRef6 = useRef<any>(null);
   // const swiper = useSwiper();
+  const router = useRouter();
 
   const categories: string[] = [
     "waist beads",
@@ -101,21 +103,26 @@ const ProductPg = () => {
                     <SwiperSlide
                       className="bg-white max-[410px]:mt-3 rounded-lg my-3 cursor-pointer flex flex-col items-center hover:shadow-lg transition"
                       key={i}
+                      // <-- Add this line
                     >
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        className="w-30 h-20 block mx-auto object-cover rounded mb-2"
-                        width={130}
-                        height={80}
-                        priority
-                      />
-                      <h2 className="text-[20px] font-semibold w-[95%] text-center truncate mb-1 line-clamp-2">
-                        {product.name}
-                      </h2>
-                      <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
-                        {product.price}
-                      </p>
+                      <div
+                        onClick={() => router.push(`/products/${product.id}`)}
+                      >
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          className="w-30 h-20 block mx-auto object-cover rounded mb-2"
+                          width={130}
+                          height={80}
+                          priority
+                        />
+                        <h2 className="text-[20px] font-semibold w-[95%] text-center truncate mb-1 line-clamp-2">
+                          {product.name}
+                        </h2>
+                        <p className="text-[#ff66d1] font-bold text-center text-[18px] text-sm mb-2">
+                          {product.price}
+                        </p>
+                      </div>
                       <button
                         className="bg-[#ff66d1] text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all"
                         onClick={() =>
@@ -169,8 +176,9 @@ const ProductPg = () => {
             <div className="grid-cols-2 min-[500px]:grid-cols-3 gap-4 grid">
               {products.slice(0, 6).map((product, i) => (
                 <div
-                  className="bg-white max-[410px]:mt-3 rounded-lg my-3 cursor-pointer flex flex-col items-center hover:shadow-lg transition"
+                  className="bg-white ... cursor-pointer ..."
                   key={i}
+                  onClick={() => router.push(`/products/${product.id}`)} // <-- Add this line
                 >
                   <Image
                     src={product.image}
@@ -187,7 +195,7 @@ const ProductPg = () => {
                     {product.price}
                   </p>
                   <button
-                    className="bg-[#ff66d1] min-[350px]:text-[18px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all"
+                    className="bg-[#ff66d1] min-[350px]:text-[16px] hover:bg-pink-700 duration-500 flex items-center justify-center gap-3 cursor-pointer text-white px-5 w-full py-3 rounded-b-md font-medium text-xs transition-all"
                     onClick={() =>
                       addToCart({
                         id: product.id,

@@ -1,9 +1,9 @@
 "use client";
 
-import DashboardProducts from "@/components/DashboardProducts";
+import DashboardProducts from "../../../components/DashboardProducts";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Loader from "@/components/Loader";
+import Loader from "../../../components/Loader";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);

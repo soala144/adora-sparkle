@@ -20,16 +20,6 @@ const sidebarLinks = [
     icon: <FaShoppingBag size={18} />,
     href: "/dashboard/products",
   },
-  {
-    label: "Payments",
-    icon: <TiCreditCard size={18} />,
-    href: "/dashboard/payments",
-  },
-  {
-    label: "Settings",
-    icon: <IoMdSettings size={18} />,
-    href: "/dashboard/settings",
-  },
 ];
 
 const DashboardSidebar = () => {

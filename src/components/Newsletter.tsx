@@ -1,9 +1,40 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NewsLetter = () => {
+  const [email, setEmail] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      toast.success("You have successfully applied to the newsletter 🎉", {
+        style: {
+          background: "#ff1493", // pink background
+          color: "#fff", // white text
+          fontWeight: "bold", // background color
+        },
+        icon: <FaCheckCircle color="white" size={20} />,
+      });
+
+      setEmail(""); // clear input
+    }, 3000);
+  };
+
   return (
     <div>
-      {" "}
       <section
         className="relative bg-cover bg-center bg-no-repeat text-white py-20 px-4 md:px-16"
         style={{ backgroundImage: "url('/images/background.jpg')" }}
@@ -20,18 +51,23 @@ const NewsLetter = () => {
             behind-the-scenes stories from Adora Sparkles.
           </p>
 
-          <form className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <form
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            onSubmit={handleSubmit}
+          >
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full sm:w-auto px-5 py-3 rounded-full text-white text-lg border border-white outline-none"
+              className="w-full sm:w-auto px-5 py-3 rounded-full text-white text-lg border border-white outline-none bg-transparent"
               required
             />
             <button
               type="submit"
               className="bg-pink-600 hover:bg-pink-700 transition px-6 py-3 rounded-full text-white font-medium"
             >
-              Subscribe
+              {loading ? "Subscribing..." : "Subscribe"}
             </button>
           </form>
 
@@ -41,6 +77,13 @@ const NewsLetter = () => {
           </p>
         </div>
       </section>
+
+      {/* Toast Container */}
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        progressClassName="bg-white"
+      />
     </div>
   );
 };

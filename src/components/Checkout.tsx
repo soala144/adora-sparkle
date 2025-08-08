@@ -72,12 +72,13 @@ const Checkout = () => {
   // };
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true); // Turn on loader
+    setLoading(true);
 
     setTimeout(() => {
-      setLoading(false); // Turn off loader after 3 seconds
-      router.push("/success"); // Redirect
-    }, 3000); // 3000ms = 3 seconds
+      clearCart(); // clears state + localStorage
+      setLoading(false);
+      router.push("/success");
+    }, 3000);
   };
 
   return (

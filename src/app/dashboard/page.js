@@ -1,8 +1,7 @@
 "use client";
 
-import DashboardHeader from "@/components/DashboardHeader";
-import DashboardMain from "@/components/DashboardMain";
-import DashboardSidebar from "@/components/DashboardSidebar";
+import DashboardMain from "../../components/DashboardMain";
+
 import React from "react";
 
 const Dashboard = () => {

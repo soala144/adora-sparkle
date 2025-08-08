@@ -18,4 +18,10 @@ const page = () => {
   );
 };
 
+export const metadata = {
+  title: "Adora Sparkles | Home",
+  description:
+    "Discover beautiful handmade accessories at Adora Sparkles. Empower and beautify every soul!",
+};
+
 export default page;

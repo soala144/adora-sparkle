@@ -4,10 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const page = () => {
-  const [email, setEmail] = useState < string > "";
-  const [password, setPassword] = useState < string > "";
-  const [message, setMessage] = useState < string > "";
+const Page = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   //  const handleSubmit = async (e: React.FormEvent) => {
   //   e.preventDefault()

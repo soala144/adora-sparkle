@@ -92,9 +92,13 @@ const Cart: React.FC = () => {
                 <p className="text-[20px]">{item.quantity}</p>
                 <button
                   className="shadow-lg rounded-md text-white cursor-pointer sm:p-2 p-1 bg-gray-400"
-                  onClick={() =>
-                    updateQuantity(item.id, Math.max(1, item.quantity - 1))
-                  }
+                  onClick={() => {
+                    if (item.quantity === 1) {
+                      removeFromCart(item.id); // Remove the item completely
+                    } else {
+                      updateQuantity(item.id, item.quantity - 1); // Reduce normally
+                    }
+                  }}
                 >
                   <LuMinus size={24} />
                 </button>

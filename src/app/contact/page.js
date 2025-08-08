@@ -1,10 +1,17 @@
+import ContactUs from "../../components/Contactus";
+
 import React from "react";
-// import Image from "next/image";
+
+export const metadata = {
+  title: "Contact | Adora Sparkles",
+  description:
+    "Get in touch with Adora Sparkles for inquiries, support, or feedback.",
+};
 
 const page = () => {
   return (
     <div>
-      <p className="mt-10">Contact Us </p>
+      <ContactUs />
     </div>
   );
 };

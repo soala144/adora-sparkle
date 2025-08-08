@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+
 const page = () => {
   return (
     <div className="flex mt-15 max-[1121px]:mx-auto w-[90.6vw] items-center justify-between mb-[140px]">

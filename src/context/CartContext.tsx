@@ -66,10 +66,21 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateQuantity = (id: string, quantity: number) => {
-    setCart((prev) => prev.map((i) => (i.id === id ? { ...i, quantity } : i)));
+    setCart((prev) => {
+      // If quantity is less than 1, remove the item
+      if (quantity < 1) {
+        return prev.filter((i) => i.id !== id);
+      }
+
+      // Otherwise, just update the quantity
+      return prev.map((i) => (i.id === id ? { ...i, quantity } : i));
+    });
   };
 
-  const clearCart = () => setCart([]);
+  const clearCart = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+  };
 
   return (
     <CartContext.Provider
