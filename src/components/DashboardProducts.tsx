@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { getSafeImageUrl } from "../utils/imageUtils";
 
 type ProductType = {
   id: string;
@@ -38,11 +39,20 @@ const DashboardProducts = ({ products }: { products: ProductType[] }) => {
           <td className="py-3 px-2 w-16 min-w-[56px] text-center align-middle">
             {(product.images ?? product.imageUrl) ? (
               <Image
-                src={(product.images ?? product.imageUrl) as string}
+                src={getSafeImageUrl(
+                  (product.images ?? product.imageUrl) as string,
+                  "https://via.placeholder.com/48x48?text=Image",
+                  ["res.cloudinary.com", "via.placeholder.com", "example.com"]
+                )}
                 alt={product.name}
                 width={48}
                 height={48}
                 className="rounded-lg object-cover h-12 w-12 mx-auto"
+                onError={(e) => {
+                  // Fallback to placeholder if image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.src = "https://via.placeholder.com/48x48?text=Image";
+                }}
               />
             ) : (
               <span className="text-gray-400 text-xs">No image</span>

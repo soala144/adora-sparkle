@@ -22,25 +22,34 @@ const ProductsPage = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
+        console.log("🔍 Fetching products from /api/products...");
         const res = await fetch("/api/products");
-        const text = await res.text();
+
         if (!res.ok) {
-          console.error("Server Error:", text);
-          setLoading(false);
-          return;
+          const errorText = await res.text();
+          console.error("❌ Server Error:", res.status, errorText);
+          throw new Error(`Server error: ${res.status} - ${errorText}`);
         }
-        if (!text) {
-          console.warn("Empty response from /api/products");
-          setLoading(false);
-          return;
+
+        const data = await res.json();
+        console.log("✅ Products fetched successfully:", data);
+
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else if (data.error) {
+          throw new Error(data.error);
+        } else {
+          console.warn("⚠️ Unexpected response format:", data);
+          setProducts([]);
         }
-        const data = JSON.parse(text);
-        setProducts(data);
       } catch (err) {
-        console.error("Fetch Error:", err);
+        console.error("❌ Fetch Error:", err);
+        // You could set an error state here to show to the user
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
+
     fetchProducts();
   }, []);
 

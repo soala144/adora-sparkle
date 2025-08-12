@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../../lib/db/prisma";
 
 export async function POST(req: Request) {
   try {
@@ -30,12 +28,23 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
+    console.log("🔍 Attempting to fetch products from database...");
     const products = await prisma.product.findMany();
+    console.log(`✅ Successfully fetched ${products.length} products`);
     return NextResponse.json(products);
-  } catch (error) {
+  } catch (error: any) {
     console.error("❌ Error fetching products:", error);
+    console.error("❌ Error details:", {
+      message: error.message,
+      code: error.code,
+      meta: error.meta,
+    });
     return NextResponse.json(
-      { error: "Failed to fetch products" },
+      {
+        error: "Failed to fetch products",
+        details: error.message,
+        code: error.code,
+      },
       { status: 500 }
     );
   }

@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { products } from "../data/product";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
