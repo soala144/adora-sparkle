@@ -122,9 +122,9 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-white p-4 sm:p-4 lg:p-6">
       {/* Header Section */}
-      <div className="mb-6 sm:mb-8 animate-fade-in-up">
+      <div className="mb-4 sm:mb-6 animate-fade-in-up">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="space-y-2">
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
@@ -145,7 +145,7 @@ const ProductsPage = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div
           className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up"
           style={{ animationDelay: "200ms" }}

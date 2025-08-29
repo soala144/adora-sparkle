@@ -163,23 +163,24 @@ const DashboardPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white p-6 lg:p-8">
+    <div className="min-h-screen bg-white p-4 lg:p-6">
       {/* Page Header with Typewriter Effect */}
-      <div className="mb-8 animate-fade-in-up">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+      <div className="mb-6 animate-fade-in-up">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
           <TypewriterText
-            text="Welcome back, Soala! 👋"
+            text="Welcome back, Adora
+            ! 👋"
             speed={80}
             className="bg-gradient-to-r from-gray-900 via-purple-800 to-gray-900 bg-clip-text text-transparent"
           />
         </h1>
-        <p className="text-gray-600 text-sm sm:text-base mt-2 animate-fade-in-up animation-delay-200">
+        <p className="text-gray-600 text-sm sm:text-base animate-fade-in-up animation-delay-200">
           Here&apos;s what&apos;s happening with your store today
         </p>
       </div>
 
       {/* Stats Cards with Staggered Animations */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div
           className={`bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-500 transform hover:scale-105 ${
             animateStats ? "animate-fade-in-up" : "opacity-0 translate-y-8"
@@ -294,9 +295,9 @@ const DashboardPage = () => {
       </div>
 
       {/* Charts and Analytics Row with Fade In */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 animate-fade-in-up animation-delay-700 hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 animate-fade-in-up animation-delay-700 hover:shadow-lg transition-all duration-300">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-lg font-semibold text-gray-900">
               Revenue Trend
             </h3>
@@ -306,7 +307,7 @@ const DashboardPage = () => {
               <option>Last 3 months</option>
             </select>
           </div>
-          <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
+          <div className="h-48 bg-gray-50 rounded-lg flex items-center justify-center">
             <div className="text-center">
               <FaChartLine className="w-16 h-16 text-gray-300 mx-auto mb-4 animate-pulse" />
               <p className="text-gray-500">Chart visualization coming soon</p>
@@ -314,11 +315,11 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 animate-fade-in-up animation-delay-800 hover:shadow-lg transition-all duration-300">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 animate-fade-in-up animation-delay-800 hover:shadow-lg transition-all duration-300">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">
             Top Products
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {topProducts.map((product, index) => (
               <div
                 key={index}
@@ -348,9 +349,9 @@ const DashboardPage = () => {
       </div>
 
       {/* Recent Activity Row with Slide In */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 animate-slide-in-left hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 animate-slide-in-left hover:shadow-lg transition-all duration-300">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-lg font-semibold text-gray-900">
               Recent Orders
             </h3>
@@ -361,7 +362,7 @@ const DashboardPage = () => {
               View all
             </Link>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {recentOrders.map((order, index) => (
               <div
                 key={order.id}
@@ -397,8 +398,8 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 animate-slide-in-right hover:shadow-lg transition-all duration-300">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 animate-slide-in-right hover:shadow-lg transition-all duration-300">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">
             Quick Actions
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

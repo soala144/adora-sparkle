@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { FaEye, FaEdit, FaTrash, FaFilter, FaDownload } from "react-icons/fa";
+import {
+  FaEye,
+  FaEdit,
+  FaTrash,
+  FaFilter,
+  FaDownload,
+  FaShoppingCart,
+} from "react-icons/fa";
 import {
   MdPending,
   MdLocalShipping,
@@ -85,9 +92,9 @@ const OrdersPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white p-6 lg:p-8">
+    <div className="min-h-screen bg-white p-4 lg:p-6">
       {/* Page Header */}
-      <div className="mb-8 animate-fade-in-up">
+      <div className="mb-6 animate-fade-in-up">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="space-y-2">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
@@ -111,7 +118,7 @@ const OrdersPage = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
         <div
           className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up"
           style={{ animationDelay: "200ms" }}
