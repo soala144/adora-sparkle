@@ -190,13 +190,13 @@ const DashboardPage = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Revenue</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {isLoading ? (
-                  <div className="h-8 w-20 bg-gray-200 rounded animate-pulse"></div>
-                ) : (
-                  formatCurrency(stats.totalRevenue)
-                )}
-              </p>
+              {isLoading ? (
+                <div className="h-8 w-20 bg-gray-200 rounded animate-pulse my-1"></div>
+              ) : (
+                <p className="text-2xl font-bold text-gray-900">
+                  {formatCurrency(stats.totalRevenue)}
+                </p>
+              )}
               <div className="flex items-center mt-1">
                 <MdTrendingUp className="w-4 h-4 text-green-500 mr-1 animate-bounce" />
                 <span className="text-sm text-green-600">+12.5%</span>
@@ -217,13 +217,13 @@ const DashboardPage = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Orders</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {isLoading ? (
-                  <div className="h-8 w-16 bg-gray-200 rounded animate-pulse"></div>
-                ) : (
-                  stats.totalOrders
-                )}
-              </p>
+              {isLoading ? (
+                <div className="h-8 w-16 bg-gray-200 rounded animate-pulse my-1"></div>
+              ) : (
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.totalOrders}
+                </p>
+              )}
               <div className="flex items-center mt-1">
                 <MdTrendingUp className="w-4 h-4 text-green-500 mr-1 animate-bounce" />
                 <span className="text-sm text-green-600">+8.2%</span>
@@ -246,13 +246,13 @@ const DashboardPage = () => {
               <p className="text-sm font-medium text-gray-600">
                 Total Products
               </p>
-              <p className="text-2xl font-bold text-gray-900">
-                {isLoading ? (
-                  <div className="h-8 w-16 bg-gray-200 rounded animate-pulse"></div>
-                ) : (
-                  stats.totalProducts
-                )}
-              </p>
+              {isLoading ? (
+                <div className="h-8 w-16 bg-gray-200 rounded animate-pulse my-1"></div>
+              ) : (
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.totalProducts}
+                </p>
+              )}
               <div className="flex items-center mt-1">
                 <MdTrendingUp className="w-4 h-4 text-green-500 mr-1 animate-bounce" />
                 <span className="text-sm text-green-600">+5.7%</span>
@@ -275,13 +275,13 @@ const DashboardPage = () => {
               <p className="text-sm font-medium text-gray-600">
                 Total Customers
               </p>
-              <p className="text-2xl font-bold text-gray-900">
-                {isLoading ? (
-                  <div className="h-8 w-16 bg-gray-200 rounded animate-pulse"></div>
-                ) : (
-                  stats.totalCustomers
-                )}
-              </p>
+              {isLoading ? (
+                <div className="h-8 w-16 bg-gray-200 rounded animate-pulse my-1"></div>
+              ) : (
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.totalCustomers}
+                </p>
+              )}
               <div className="flex items-center mt-1">
                 <MdTrendingUp className="w-4 h-4 text-green-500 mr-1 animate-bounce" />
                 <span className="text-sm text-green-600">+15.3%</span>
