@@ -1,7 +1,6 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import ConditionalNavbar from "../components/ConditionalNavbar";
 import { CartProvider } from "../context/CartContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,8 +26,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <body>
         <CartProvider>
-          <Navbar />
-          {children}
+          <ConditionalNavbar>{children}</ConditionalNavbar>
           <ToastContainer
             position="top-right"
             autoClose={3000}
@@ -42,7 +40,6 @@ export default function RootLayout({ children }) {
             theme="light"
           />
         </CartProvider>
-        <Footer />
       </body>
     </html>
   );
