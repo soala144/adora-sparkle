@@ -35,18 +35,26 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="z-50 fixed top-0 w-full bg-gray-200 border-b border-gray-300">
-        <div className="flex items-center justify-between max-w-7xl mx-auto px-4 md:px-8 h-16 text-black">
+      <nav className="z-50 fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div className="flex items-center justify-between max-w-7xl mx-auto px-4 md:px-8 h-20">
           {/* Logo */}
-          <figure className="h-14 w-14 rounded-full overflow-hidden border-2 border-gray-300">
-            <Image
-              src="/images/logo.jpg"
-              alt="Logo"
-              width={56}
-              height={56}
-              className="h-full w-full object-cover"
-            />
-          </figure>
+          <Link href="/" className="flex items-center gap-3 group">
+            <figure className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-200 shadow-sm group-hover:shadow-md transition-all duration-300">
+              <Image
+                src="/images/logo.jpg"
+                alt="Adora Sparkles Logo"
+                width={48}
+                height={48}
+                className="h-full w-full object-cover"
+              />
+            </figure>
+            <div className="hidden sm:block">
+              <h1 className="text-xl font-bold text-gray-900">
+                Adora Sparkles
+              </h1>
+              <p className="text-xs text-gray-600">Premium Accessories</p>
+            </div>
+          </Link>
 
           {/* Desktop Nav Links */}
           <ul className="hidden md:flex gap-8">
@@ -54,13 +62,16 @@ const Navbar = () => {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`text-lg hover:text-[#e38bc9b6] ${
-                    pathname === item.href
-                      ? "underline-offset-4 text-[#FF66D1]"
-                      : ""
+                  className={`text-lg font-medium transition-all duration-300 hover:text-gray-600 relative group ${
+                    pathname === item.href ? "text-gray-900" : "text-gray-600"
                   }`}
                 >
                   {item.name}
+                  <span
+                    className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gray-600 to-slate-600 transition-all duration-300 group-hover:w-full ${
+                      pathname === item.href ? "w-full" : ""
+                    }`}
+                  ></span>
                 </Link>
               </li>
             ))}
@@ -68,148 +79,145 @@ const Navbar = () => {
 
           {/* Right Side: Search, Cart, Hamburger */}
           <div className="flex items-center gap-6">
-            <IoSearchOutline
-              size={27}
+            {/* Search Icon */}
+            <button
               onClick={toggleSearch}
-              className="cursor-pointer"
-            />
+              className="p-2 rounded-full hover:bg-gray-100 transition-all duration-300 group"
+            >
+              <IoSearchOutline
+                size={24}
+                className="text-gray-600 group-hover:text-gray-900"
+              />
+            </button>
+
             {/* Cart Icon */}
-            <Link href="/cart" className="relative">
-              <IoCartOutline size={30} />
-              <div className="absolute -top-2 -right-2 bg-[#FF66D1] text-xs rounded-full w-5 h-5 text-white flex items-center justify-center shadow">
-                <span>
-                  {cart.reduce((sum, item) => sum + item.quantity, 0)}
-                </span>
-              </div>
+            <Link
+              href="/cart"
+              className="relative p-2 rounded-full hover:bg-gray-100 transition-all duration-300 group"
+            >
+              <IoCartOutline
+                size={26}
+                className="text-gray-600 group-hover:text-gray-900"
+              />
+              {cart.length > 0 && (
+                <div className="absolute -top-1 -right-1 bg-gradient-to-r from-gray-600 to-slate-600 text-xs rounded-full w-6 h-6 text-white flex items-center justify-center shadow-lg font-semibold">
+                  <span>
+                    {cart.reduce((sum, item) => sum + item.quantity, 0)}
+                  </span>
+                </div>
+              )}
             </Link>
 
             {/* Hamburger Menu */}
-            <button onClick={toggleMenu} className="md:hidden text-2xl ml-2">
-              {isOpen ? <IoClose size={30} /> : <IoMenuOutline size={30} />}
+            <button
+              onClick={toggleMenu}
+              className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-all duration-300"
+            >
+              {isOpen ? (
+                <IoClose size={28} className="text-gray-600" />
+              ) : (
+                <IoMenuOutline size={28} className="text-gray-600" />
+              )}
             </button>
           </div>
-
-          {/* Mobile Slide-out Menu */}
-          {isOpen && (
-            <div className="fixed inset-0 bg-[#1F2937] bg-opacity-40 z-40 flex justify-start">
-              <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
-                <div
-                  className="bg-gray-200 h-full p-6 flex flex-col justify-between animate-slide-in shadow-lg"
-                  style={{ width: "85vw", maxWidth: "400px" }}
-                >
-                  <div>
-                    {/* Mobile Logo Row */}
-                    <div className="flex justify-between items-center mb-8">
-                      <figure className="h-14 w-14 rounded-full overflow-hidden border-2 border-gray-300">
-                        <Image
-                          src="/images/logo.jpg"
-                          alt="Logo"
-                          width={56}
-                          height={56}
-                          className="h-full w-full object-cover"
-                        />
-                      </figure>
-                      <IoClose
-                        size={30}
-                        className="cursor-pointer"
-                        onClick={() => setIsOpen(false)}
-                      />
-                    </div>
-
-                    {/* Menu Items */}
-                    <ul className="flex flex-col gap-6 text-lg mt-2">
-                      {navItems.map((item) => (
-                        <li key={item.href}>
-                          <Link
-                            href={item.href}
-                            onClick={closeMenu}
-                            className={`block ${
-                              pathname === item.href
-                                ? "text-black font-bold"
-                                : "text-gray-700"
-                            }`}
-                          >
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Newsletter Button */}
-                  <button
-                    className="mt-8 inline-flex items-center justify-center gap-2 bg-gradient-to-br from-[#9D1D20] via-[#B22222] to-[#80171A] text-white px-6 py-3 rounded-full shadow hover:bg-[#80171a] transition"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    NewsLetter <FaNewspaper />
-                  </button>
-                </div>
-              </OutsideClickHandler>
-            </div>
-          )}
         </div>
-      </nav>
 
-      {showSearch && (
-        <div className="fixed inset-0 bg-white z-[9999] overflow-y-auto animate-slide-in">
-          <div className="max-w-4xl mx-auto px-4 py-8">
-            {/* Top bar: input + close */}
-            <div className="flex items-center justify-between border-b border-gray-400 pb-3 mb-6">
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search for accessories..."
-                className="text-2xl font-medium outline-none w-full"
-              />
-              <div className="flex items-center gap-4">
-                {searchTerm && (
-                  <button
-                    onClick={() => setSearchTerm("")}
-                    className="text-gray-500 hover:underline"
-                  >
-                    Clear
-                  </button>
-                )}
-                <IoClose
-                  size={30}
-                  className="cursor-pointer text-gray-600"
-                  onClick={() => setShowSearch(false)}
+        {/* Search Bar */}
+        {showSearch && (
+          <div className="border-t border-gray-200 bg-white/95 backdrop-blur-md">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
+              <div className="relative max-w-md mx-auto">
+                <input
+                  type="text"
+                  placeholder="Search for products..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                />
+                <IoSearchOutline
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  size={20}
                 />
               </div>
             </div>
+          </div>
+        )}
+      </nav>
 
-            {/* Tabs */}
-            <div className="flex gap-8 text-gray-400 font-medium mb-8 text-lg">
-              <button className="text-black border-b-2 border-black pb-1">
-                Products
-              </button>
-              <button>Collections</button>
-            </div>
-
-            {/* Example Search Results */}
-            <div className="flex flex-col gap-8">
-              {[...Array(2)].map((_, i) => (
-                <div key={i} className="flex gap-4 items-center">
-                  <Image
-                    src="/images/waist-beads.jpg"
-                    alt="Bead"
-                    width={80}
-                    height={80}
-                    className="w-20 h-20 object-cover rounded"
-                  />
+      {/* Mobile Slide-out Menu */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 flex justify-start">
+          <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
+            <div
+              className="bg-white h-full p-6 flex flex-col justify-between shadow-2xl animate-slide-in"
+              style={{ width: "85vw", maxWidth: "400px" }}
+            >
+              <div>
+                {/* Mobile Logo */}
+                <div className="flex items-center gap-3 mb-8">
+                  <figure className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-200">
+                    <Image
+                      src="/images/logo.jpg"
+                      alt="Adora Sparkles Logo"
+                      width={48}
+                      height={48}
+                      className="h-full w-full object-cover"
+                    />
+                  </figure>
                   <div>
-                    <h3 className="font-semibold text-lg">
-                      {i === 0 ? "Kouya" : "Dioula"} – Single Strand Waist Bead
-                    </h3>
-                    <p className="text-gray-700 font-medium">₦77,900.00</p>
+                    <h1 className="text-xl font-bold text-gray-900">
+                      Adora Sparkles
+                    </h1>
+                    <p className="text-xs text-gray-600">Premium Accessories</p>
                   </div>
                 </div>
-              ))}
+
+                {/* Mobile Nav Links */}
+                <ul className="space-y-4">
+                  {navItems.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={closeMenu}
+                        className={`block text-lg font-medium py-3 px-4 rounded-xl transition-all duration-300 ${
+                          pathname === item.href
+                            ? "bg-gradient-to-r from-gray-100 to-slate-100 text-gray-900 border border-gray-200"
+                            : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Mobile Footer */}
+              <div className="border-t border-gray-200 pt-6">
+                <div className="text-center">
+                  <p className="text-sm text-gray-500 mb-2">
+                    Follow us on social media
+                  </p>
+                  <div className="flex justify-center gap-4">
+                    <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                      <span className="text-gray-600 text-sm">📱</span>
+                    </div>
+                    <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                      <span className="text-gray-600 text-sm">📷</span>
+                    </div>
+                    <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                      <span className="text-gray-600 text-sm">🐦</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </OutsideClickHandler>
         </div>
       )}
+
+      {/* Spacer for fixed navbar */}
+      <div className="h-20"></div>
     </>
   );
 };
